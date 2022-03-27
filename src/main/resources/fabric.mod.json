@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "silivia",
+  "version": "V1",
+  "name": "Silivia",
+  "description": "Trolling!",
+  "authors": [
+    "мяучер"
+  ],
+  "contact": {
+    "repo": "https://github.com/Jackesparragos/Silivia"
+  },
+  "environment": "client",
+  "entrypoints": {
+    "meteor": [
+      "silivia.Silivia"
+    ]
+  },
+  "mixins": [
+    "mixins.json"
+  ],
+  "custom": {
+    "meteor-client:color": "0,175,255"
+  },
+  "depends": {
+    "java": ">=17",
+    "minecraft": ">=1.18",
+    "meteor-client": "*"
+  }
+}
