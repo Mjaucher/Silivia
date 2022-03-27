@@ -1,7 +1,5 @@
 # Silivia 1.18.2!!!
 
-__Awesome tool for trolling.__
-
 ## Needed 4 run!
 
 - [Fabric Language Kotlin](https://www.curseforge.com/minecraft/mc-mods/fabric-language-kotlin) release __1.7.1+kotlin.1.6.10__.
