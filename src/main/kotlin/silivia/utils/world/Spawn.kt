@@ -27,7 +27,7 @@ class Spawn
             Entity.updatePosition(SpawnPosX, SpawnPosY, SpawnPosZ)
             minecraft.world?.addEntity(Entity.id, Entity)
         }
-        fun particle(particleType: MutableList<ParticleType<*>>, posX: Double, posY: Double, posZ: Double)
+        fun particle(particleType : MutableList<ParticleType<*>>, posX : Double, posY : Double, posZ : Double)
         {
             for (ParticleType in particleType)
             {

@@ -10,11 +10,11 @@ class MultiTask : Module(Silivia.Special.Category, "Multi-Task", "Allows you to 
 {
     private var no = false // =^)
 
-    @EventHandler fun onEventA(Event : BreakingBlock)
+    @EventHandler private fun onEventA(Event : BreakingBlock)
     {
         Event.boo = no
     }
-    @EventHandler fun onEventB(Event : UsingItem)
+    @EventHandler private fun onEventB(Event : UsingItem)
     {
         Event.lean = no
     }
