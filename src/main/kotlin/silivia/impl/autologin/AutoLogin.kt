@@ -1,4 +1,4 @@
-package silivia.impl
+package silivia.impl.autologin
 
 import silivia.Silivia
 import silivia.utils.chat.Message

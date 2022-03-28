@@ -1,4 +1,4 @@
-package silivia.impl
+package silivia.impl.autokit
 
 import silivia.Silivia
 import silivia.utils.chat.Message

@@ -1,4 +1,4 @@
-package silivia.impl
+package silivia.impl.multitask
 
 import silivia.Silivia
 import silivia.events.BreakingBlock
