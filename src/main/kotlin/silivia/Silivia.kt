@@ -7,10 +7,12 @@ import silivia.impl.fakekick.FakeKick
 import silivia.impl.killeffects.KillEffects
 import silivia.impl.nightmode.NightMode
 import silivia.impl.nointeract.NoInteract
+import silivia.impl.prefix.Prefix
 
 import silivia.utils.Reference
 import meteordevelopment.meteorclient.MeteorClient
 import meteordevelopment.meteorclient.addons.MeteorAddon
+import meteordevelopment.meteorclient.systems.config.Config
 import meteordevelopment.meteorclient.systems.modules.Category
 import meteordevelopment.meteorclient.systems.modules.Module
 import meteordevelopment.meteorclient.systems.modules.Modules
@@ -35,7 +37,16 @@ class Silivia : MeteorAddon()
         MeteorClient.EVENT_BUS.registerLambdaFactory("silivia") { lookupInMethod : Method, klass :
         Class<*>? -> lookupInMethod.invoke(null, klass, MethodHandles.lookup()) as MethodHandles.Lookup }
 
-        registerModules(MultiTask(), FakeKick(), NightMode(), AutoLogin(), AutoKit(), KillEffects(), NoInteract())
+        registerModules(
+            MultiTask(),
+            FakeKick(),
+            Prefix(),
+            NightMode(),
+            AutoLogin(),
+            AutoKit(),
+            KillEffects(),
+            NoInteract()
+        )
     }
     override fun onRegisterCategories()
     {

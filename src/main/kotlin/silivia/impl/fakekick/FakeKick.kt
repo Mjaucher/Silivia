@@ -14,14 +14,10 @@ import net.minecraft.text.LiteralText
 class FakeKick : Module(Silivia.Special.Category, "fake-kick", "Shows a fake kick screen.")
 {
     private val group = settings.defaultGroup
-    private var reasonA = group.add(EnumSetting.Builder().name("message").description("Disconnect message.")
-        .defaultValue(Intex).build())
-    private var reasonB = group.add(EnumSetting.Builder().name("reason").description("Internal Exception Reason.")
-        .defaultValue(Pointer).visible{reasonA.get() == Intex}.build())
-    private var customMessage : Setting<String> = group.add(StringSetting.Builder()
-        .name("text").defaultValue("§c☠ T§6r§eo§al§bl§9e§dd ☠").visible{reasonA.get() == Custom}.build())
-    private var autoToggle: Setting<Boolean> = group.add(BoolSetting.Builder()
-        .name("auto-toggle").defaultValue(true).build())
+    private var reasonA = group.add(EnumSetting.Builder().name("message").description("Disconnect message.").defaultValue(Intex).build())
+    private var reasonB = group.add(EnumSetting.Builder().name("reason").description("Internal Exception Reason.").defaultValue(Pointer).visible{reasonA.get() == Intex}.build())
+    private var customMessage = group.add(StringSetting.Builder().name("text").defaultValue("§c☠ T§6r§eo§al§bl§9e§dd ☠").visible{reasonA.get() == Custom}.build())
+    private var autoToggle = group.add(BoolSetting.Builder().name("auto-toggle").defaultValue(true).build())
 
     @EventHandler private fun onEventA(Event : Post)
     {
