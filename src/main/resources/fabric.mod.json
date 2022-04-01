@@ -13,14 +13,14 @@
   "environment": "client",
   "entrypoints": {
     "meteor": [
-      "silivia.Silivia"
+      "me.meowcher.silivia.utils.addon.Initializer"
     ]
   },
   "mixins": [
     "mixins.json"
   ],
   "custom": {
-    "meteor-client:color": "0,175,255"
+    "meteor-client:color": "165,125,255"
   },
   "depends": {
     "java": ">=17",
