@@ -10,6 +10,7 @@
   "contact": {
     "repo": "https://github.com/Jackesparragos/Silivia"
   },
+  "icon": "assets/silivia/icon.png",
   "environment": "client",
   "entrypoints": {
     "meteor": [
@@ -17,7 +18,7 @@
     ]
   },
   "mixins": [
-    "mixins.json"
+    "silivia.mixins.json"
   ],
   "custom": {
     "meteor-client:color": "165,125,255"
