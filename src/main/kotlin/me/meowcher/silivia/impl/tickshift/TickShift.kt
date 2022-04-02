@@ -45,7 +45,8 @@ class TickShift : Module(Initializer.Category, "tick-shift", "timer = 2.0")
 
     @EventHandler private fun onEventA(Event : Post)
     {
-        val booA = minecraft.player!!.sidewaysSpeed != 0F || minecraft.player!!.forwardSpeed != 0F
+        //val booA = minecraft.player!!.sidewaysSpeed != 0F || minecraft.player!!.forwardSpeed != 0F
+        val booA = mc.options.forwardKey.isPressed||mc.options.leftKey.isPressed||mc.options.rightKey.isPressed||mc.options.backKey.isPressed
 
         if (!booB && !booA) ticksA++
         if (booA) ticksA = 0
@@ -54,8 +55,7 @@ class TickShift : Module(Initializer.Category, "tick-shift", "timer = 2.0")
         {
             booB = true
             if (!booC) message()
-            if (ticksB >= 0 && mc.options.forwardKey.isPressed || mc.options.leftKey.isPressed ||
-                mc.options.rightKey.isPressed || mc.options.backKey.isPressed)
+            if (ticksB >= 0 && booA)
             {
                 timer(timerValue.get())
                 ticksB--
