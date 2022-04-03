@@ -23,9 +23,9 @@ class Interact
         {
             MinecraftClient.getInstance().player?.networkHandler?.onDisconnect(Packet as DisconnectS2CPacket?)
         }
-        private fun swing(swingHand : Hand)
+        private fun swing(Hand : Hand)
         {
-            MinecraftClient.getInstance().player?.swingHand(swingHand)
+            MinecraftClient.getInstance().player?.swingHand(Hand)
         }
         fun use()
         {
@@ -39,11 +39,11 @@ class Interact
         {
             packetSend(PlayerActionC2SPacket(PlayerActionC2SPacket.Action.ABORT_DESTROY_BLOCK, destroyPosition, Direction.UP))
         }
-        fun place(Item : Item?, Position : BlockPos?, slotBack : Boolean)
+        fun place(Item : Item?, Position : BlockPos?, Direction : Direction, slotBack : Boolean)
         {
             var boo = true
             val oldSlot = MinecraftClient.getInstance().player?.inventory?.selectedSlot
-            val result = BlockHitResult(Vec3d.of(Position), Direction.DOWN, Position, false)
+            val result = BlockHitResult(Vec3d.of(Position), Direction, Position, false)
             if (MinecraftClient.getInstance().world?.getBlockState(Position)?.isAir == false) return
             val slot = Inventory.Slot.Get.itemSlot(Item, false)
             if (slot != oldSlot)

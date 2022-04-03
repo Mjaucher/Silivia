@@ -1,60 +1,68 @@
 package me.meowcher.silivia.impl.prefix
 
 import me.meowcher.silivia.utils.addon.Initializer
-import me.meowcher.silivia.impl.prefix.FormatEnum.*
 import me.meowcher.silivia.utils.addon.Reference
 import meteordevelopment.meteorclient.settings.*
 import meteordevelopment.meteorclient.systems.modules.Module
-import meteordevelopment.meteorclient.utils.player.ChatUtils.registerCustomPrefix
-import meteordevelopment.meteorclient.utils.render.color.SettingColor
+import meteordevelopment.meteorclient.utils.player.ChatUtils
 import net.minecraft.text.LiteralText
 import net.minecraft.text.TextColor
 import net.minecraft.util.Formatting.*
 
-
-class Prefix : Module(Initializer.Category, "prefix", "Adds customization for prefix from Meteor Client!")
+class Prefix : Module(Initializer.Category, "prefix", "Custom Meteor Client Prefix with more customizations.")
 {
     private val group = settings.defaultGroup
     private var colorGroup = settings.createGroup("Color Settings")
-    private var formatting = group.add(EnumSetting.Builder().name("formatting").defaultValue(Bold).build())
-    private val sideA = group.add(StringSetting.Builder().name("first-side").defaultValue("$").build())
-    private val text = group.add(StringSetting.Builder().name("prefix-text").defaultValue(Reference.Name).build())
-    private val sideB = group.add(StringSetting.Builder().name("second-side").defaultValue("$ ").build())
-    private val colorA = colorGroup.add(ColorSetting.Builder().name("first-color").defaultValue(Reference.defaultColorA).build())
-    private val colorB = colorGroup.add(ColorSetting.Builder().name("text-color").defaultValue(Reference.defaultColorB).build())
-    private val colorC = colorGroup.add(ColorSetting.Builder().name("second-color").defaultValue(Reference.defaultColorC).build())
+    private var formatting = group.add(EnumSetting.Builder().name("formatting").defaultValue(TextStyle.None).build())
+    private val leftSide = group.add(StringSetting.Builder().name("left-side").defaultValue("$").build())
+    private val middleText = group.add(StringSetting.Builder().name("middle-text").defaultValue(Reference.Name).build())
+    private val rightSide = group.add(StringSetting.Builder().name("right-side").defaultValue("$ ").build())
+    private val leftColor = colorGroup.add(ColorSetting.Builder().name("left-color").defaultValue(Reference.thirdDefColor).build())
+    private val middleColor = colorGroup.add(ColorSetting.Builder().name("middle-color").defaultValue(Reference.secondDefColor).build())
+    private val rightColor = colorGroup.add(ColorSetting.Builder().name("right-color").defaultValue(Reference.firstDefColor).build())
 
     override fun onActivate()
     {
-        registerCustomPrefix("meteordevelopment.meteorclient") {style()}
-        registerCustomPrefix("me.meowcher.silivia") {style()}
+        ChatUtils.registerCustomPrefix("meteordevelopment.meteorclient") { prefixStyle() }
+        ChatUtils.registerCustomPrefix("me.meowcher.silivia") { prefixStyle() }
     }
-    private fun style() : LiteralText
-    {
-        val format = when (formatting.get())
-        {
-            Strikethrough -> STRIKETHROUGH
-            Obfuscated -> OBFUSCATED
-            Underline -> UNDERLINE
-            Italic -> ITALIC
-            Bold -> BOLD
-            else -> WHITE
-        }
 
-        val sideA = LiteralText(sideA.get())
-        val name = LiteralText(text.get())
-        val sideB = LiteralText(sideB.get())
+    private fun prefixStyle() : LiteralText
+    {
+        val leftSide = LiteralText(leftSide.get())
+        val middleText = LiteralText(middleText.get())
+        val rightSide = LiteralText(rightSide.get())
 
         val prefix = LiteralText("")
 
-        sideA.style = sideA.style.withColor(TextColor.fromRgb(colorA.get().packed))
-        name.style = name.style.withColor(TextColor.fromRgb(colorB.get().packed))
-        sideB.style = sideB.style.withColor(TextColor.fromRgb(colorC.get().packed))
+        val formatting = when (formatting.get())
+        {
+            TextStyle.Strikethrough -> STRIKETHROUGH
+            TextStyle.Obfuscated -> OBFUSCATED
+            TextStyle.Underline -> UNDERLINE
+            TextStyle.Italic -> ITALIC
+            TextStyle.Bold -> BOLD
+            else -> WHITE
+        }
 
-        prefix.append(sideA).style = sideA.style.withFormatting(format)
-        prefix.append(name).style = name.style.withFormatting(format)
-        prefix.append(sideB).style = sideB.style.withFormatting(format)
+        leftSide.style = leftSide.style.withColor(TextColor.fromRgb(leftColor.get().packed))
+        middleText.style = middleText.style.withColor(TextColor.fromRgb(middleColor.get().packed))
+        rightSide.style = rightSide.style.withColor(TextColor.fromRgb(rightColor.get().packed))
+
+        prefix.append(leftSide).style = leftSide.style.withFormatting(formatting)
+        prefix.append(middleText).style = middleText.style.withFormatting(formatting)
+        prefix.append(rightSide).style = rightSide.style.withFormatting(formatting)
 
         return prefix
+    }
+
+    private enum class TextStyle
+    {
+        Strikethrough,
+        Obfuscated,
+        Underline,
+        Italic,
+        Bold,
+        None
     }
 }

@@ -24,14 +24,15 @@ class KillEffects : Module(Initializer.Category, "kill-effects", "Shows Effects 
     private var sounds = soundGroup.add(SoundEventListSetting.Builder().name("sounds").visible{sound.get()}.build())
     private var particle = particleGroup.add(BoolSetting.Builder().name("particle").defaultValue(true).build())
     private var particles = particleGroup.add(ParticleTypeListSetting.Builder().name("particles").visible{particle.get()}.defaultValue(ParticleTypes.HEART).build())
-    private var numA = 0
-    private var numB = 0
+    private var badCrashFixAttempt = false
+    private var ending = 0
 
     override fun onActivate()
     {
-        numA = 1
+        badCrashFixAttempt = false
     }
-    @EventHandler private fun onEventA(Event : Post)
+
+    @EventHandler private fun onTickPostEvent(Event : Post)
     {
         val lightning = LightningEntity(EntityType.LIGHTNING_BOLT, mc.world)
         for (entity in mc.world!!.entities)
@@ -42,13 +43,15 @@ class KillEffects : Module(Initializer.Category, "kill-effects", "Shows Effects 
                 {
                     if (0 < entity.health)
                     {
-                        numA = 2
-                        numB = 1
+                        badCrashFixAttempt = true
+                        ending = 1
                     }
+
                     val posX : Double = entity.getX()
                     val posY : Double = entity.getY()
                     val posZ : Double = entity.getZ()
-                    if (numA != 1 && numB == 1 && entity.health == 0f)
+
+                    if (badCrashFixAttempt && ending == 1 && entity.health == 0f)
                     {
                         if (thunder.get())
                         {
@@ -59,7 +62,7 @@ class KillEffects : Module(Initializer.Category, "kill-effects", "Shows Effects 
                         }
                         if (particle.get()) Spawn.particle(particles.get(), posX, posY + 1.75 , posZ)
                         if (sound.get()) Spawn.sound(sounds.get())
-                        numB = 2
+                        ending = 2
                     }
                 }
             }

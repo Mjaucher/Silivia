@@ -2,8 +2,6 @@ package me.meowcher.silivia.impl.fakekick
 
 import me.meowcher.silivia.utils.addon.Initializer
 import me.meowcher.silivia.utils.player.Interact
-import me.meowcher.silivia.impl.fakekick.KickEnum.*
-import me.meowcher.silivia.impl.fakekick.IntexEnum.*
 import meteordevelopment.meteorclient.events.world.TickEvent.Post
 import meteordevelopment.meteorclient.settings.*
 import meteordevelopment.meteorclient.systems.modules.Module
@@ -11,34 +9,45 @@ import meteordevelopment.orbit.EventHandler
 import net.minecraft.network.packet.s2c.play.DisconnectS2CPacket
 import net.minecraft.text.LiteralText
 
-class FakeKick : Module(Initializer.Category, "fake-kick", "Shows a fake kick screen.")
+class FakeKick : Module(Initializer.Category, "fake-kick", "Automatic disconnect with Fake reason.")
 {
     private val group = settings.defaultGroup
-    private var reasonA = group.add(EnumSetting.Builder().name("message").description("Disconnect message.").defaultValue(Intex).build())
-    private var reasonB = group.add(EnumSetting.Builder().name("reason").description("Internal Exception Reason.").defaultValue(Pointer).visible{reasonA.get() == Intex}.build())
-    private var customMessage = group.add(StringSetting.Builder().name("text").defaultValue("§c☠ T§6r§eo§al§bl§9e§dd ☠").visible{reasonA.get() == Custom}.build())
+    private var disconnectReason = group.add(EnumSetting.Builder().name("message").description("Disconnect message.").defaultValue(KickEnum.Intex).build())
+    private var internalExceptionReason = group.add(EnumSetting.Builder().name("reason").description("Internal Exception Reason.").defaultValue(IntexEnum.Connection).visible { disconnectReason.get() == KickEnum.Intex } .build())
+    private var customMessage = group.add(StringSetting.Builder().name("text").defaultValue("§c☠ T§6r§eo§al§bl§9e§dd ☠").visible { disconnectReason.get() == KickEnum.Custom } .build())
     private var autoToggle = group.add(BoolSetting.Builder().name("auto-toggle").defaultValue(true).build())
 
-    @EventHandler private fun onEventA(Event : Post)
+    @EventHandler private fun onTickPostEvent(Event : Post)
     {
         val iE = "Internal Exception: java."
-        val iException = when (reasonB.get())
+        val iException = when (internalExceptionReason.get())
         {
-            Closure -> iE+"io.IOException: An existing connection was forcibly closed by the remote host"
-            Pointer -> iE+"lang.NullPointerException"
+            IntexEnum.Closure -> iE+"io.IOException: An existing connection was forcibly closed by the remote host"
+            IntexEnum.Pointer -> iE+"lang.NullPointerException"
             else -> iE+"io.IOException: An established connection was aborted by the software in your host machine"
         }
-        val message = when (reasonA.get())
+        val disconnectMessage = when (disconnectReason.get())
         {
-            Disconnect -> "Disconnected"
-            WrongAuth -> "Not authenticated with Minecraft.net"
-            Timeout -> "Timed Out"
-            Flight -> "Flying is not enabled on this server"
-            Verify -> "Failed to verify username"
-            Intex -> iException
+            KickEnum.Disconnect -> "Disconnected"
+            KickEnum.WrongAuth -> "Not authenticated with Minecraft.net"
+            KickEnum.Timeout -> "Timed Out"
+            KickEnum.Flight -> "Flying is not enabled on this server"
+            KickEnum.Verify -> "Failed to verify username"
+            KickEnum.Intex -> iException
             else -> customMessage.get()
         }
-        Interact.onDisconnect(DisconnectS2CPacket(LiteralText(message)))
+
+        Interact.onDisconnect(DisconnectS2CPacket(LiteralText(disconnectMessage)))
         if (autoToggle.get()) toggle()
+    }
+
+    private enum class IntexEnum
+    {
+        Connection, Pointer, Closure
+    }
+
+    private enum class KickEnum
+    {
+        Disconnect, WrongAuth, Timeout, Flight, Verify, Custom, Intex
     }
 }

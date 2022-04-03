@@ -8,12 +8,12 @@ import meteordevelopment.meteorclient.settings.*
 import meteordevelopment.orbit.EventHandler
 import net.minecraft.network.packet.s2c.play.PlayerRespawnS2CPacket
 
-class AutoKit : Module(Initializer.Category, "auto-kit", "Enters /kit (Kit Name) after respawn.")
+class AutoKit : Module(Initializer.Category, "auto-kit", "Takes Kit after your death.")
 {
     private val group = settings.defaultGroup
-    private val kitName : Setting<String> = group.add(StringSetting.Builder().name("Kit-Name").defaultValue("").build())
+    private val kitName : Setting<String> = group.add(StringSetting.Builder().name("kit-name").defaultValue("").build())
 
-    @EventHandler private fun onEventA(Event : Receive)
+    @EventHandler private fun onPacketReceiveEvent(Event : Receive)
     {
         if (Event.packet is PlayerRespawnS2CPacket
             && mc.player!!.health == 0f)

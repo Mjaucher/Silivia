@@ -8,13 +8,13 @@ import meteordevelopment.orbit.EventHandler
 
 class MultiTask : Module(Initializer.Category, "multi-task", "Allows you to eat while breaking a block.")
 {
-    private var no = false // =^)
+    private var no = false // deception
 
-    @EventHandler private fun onEventA(Event : BreakingBlock)
+    @EventHandler private fun onBreakingBlockEvent(Event : BreakingBlock)
     {
         Event.boo = no
     }
-    @EventHandler private fun onEventB(Event : UsingItem)
+    @EventHandler private fun onUsingItemEvent(Event : UsingItem)
     {
         Event.lean = no
     }

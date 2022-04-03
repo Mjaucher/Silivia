@@ -12,43 +12,51 @@ class NightMode : Module(Initializer.Category, "night-mode", "Allows you to swit
 {
     private val group = settings.defaultGroup
     private var status = group.add(EnumSetting.Builder().name("status").defaultValue(StatusEnum.Static).build())
-    private var changeRate = group.add(IntSetting.Builder().name("change-rate").defaultValue(15).sliderRange(0, 99).visible{status.get() == StatusEnum.Changing }.build())
-    private var moonAnimation = group.add(BoolSetting.Builder().name("moon-animation").defaultValue(false).visible{status.get() == StatusEnum.Changing }.build())
-    private var time = group.add(IntSetting.Builder().name("time").defaultValue(18).min(0).sliderMax(24).visible{status.get() == StatusEnum.Static }.build())
+    private var changeRate = group.add(IntSetting.Builder().name("change-rate").defaultValue(15).sliderRange(0, 99).visible { status.get() == StatusEnum.Changing } .build())
+    private var moonAnimation = group.add(BoolSetting.Builder().name("moon-animation").defaultValue(false).visible { status.get() == StatusEnum.Changing } .build())
+    private var time = group.add(IntSetting.Builder().name("time-of-day").defaultValue(18).min(0).sliderMax(24).visible { status.get() == StatusEnum.Static } .build())
 
-    private var gameTime : Long = 0
-    private var num : Int = 0
+    private var oldTime : Long = 0
+    private var timeOfDay = 0
 
     override fun onActivate()
     {
-        gameTime = mc.world!!.time
-        num = 0
-    }
-    override fun onDeactivate()
-    {
-        mc.world!!.timeOfDay = gameTime
+        oldTime = mc.world!!.time
+        timeOfDay = 0
     }
 
-    @EventHandler private fun onEventA(Event : Receive)
+    override fun onDeactivate()
+    {
+        mc.world!!.timeOfDay = oldTime
+    }
+
+    @EventHandler private fun onPacketReceiveEvent(Event : Receive)
     {
         if (Event.packet is WorldTimeUpdateS2CPacket)
         {
             Event.isCancelled = true
         }
     }
-    @EventHandler private fun onEventB(Event : Post)
+
+    @EventHandler private fun onTickPostEvent(Event : Post)
     {
-        num += if (moonAnimation.get()) 24000 else 0
+        timeOfDay += if (moonAnimation.get()) 24000 else 0
 
         if (status.get() == StatusEnum.Static)
         {
-            num = 1000 * time.get()
-            mc.world!!.timeOfDay = num.toLong()
+            timeOfDay = 1000 * time.get()
+            mc.world!!.timeOfDay = timeOfDay.toLong()
         }
         else
         {
-            num += 10 * changeRate.get()
-            mc.world!!.timeOfDay = num.toLong()
+            timeOfDay += 10 * changeRate.get()
+            mc.world!!.timeOfDay = timeOfDay.toLong()
         }
+    }
+
+    private enum class StatusEnum
+    {
+        Changing,
+        Static
     }
 }

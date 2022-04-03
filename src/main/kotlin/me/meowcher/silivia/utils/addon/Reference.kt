@@ -8,8 +8,9 @@ class Reference
     {
         const val Name = "Silivia"
         const val Version = "V1"
-        val defaultColorC = SettingColor(165, 125, 255, 255)
-        val defaultColorB = SettingColor(135, 105, 205, 255)
-        val defaultColorA = SettingColor(105, 80, 160, 255)
+        // default addon colors
+        val firstDefColor = SettingColor(165, 125, 255, 255)
+        val secondDefColor = SettingColor(135, 105, 205, 255)
+        val thirdDefColor = SettingColor(105, 80, 160, 255)
     }
 }

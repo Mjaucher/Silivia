@@ -13,6 +13,7 @@ import net.minecraft.util.math.BlockPos
 
 class NoInteract : Module(Initializer.Category, "no-interact", "Clicks disabler.")
 {
+    // rewrite soon
     private var miscellaneousGroup = settings.createGroup("Miscellaneous Settings")
     private var containersGroup = settings.createGroup("Containers Settings")
     private var miscellaneous = miscellaneousGroup.add(BoolSetting.Builder().name("miscellaneous").defaultValue(true).build())

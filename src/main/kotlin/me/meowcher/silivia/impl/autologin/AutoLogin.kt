@@ -7,17 +7,18 @@ import meteordevelopment.meteorclient.settings.*
 import meteordevelopment.meteorclient.systems.modules.Module
 import meteordevelopment.orbit.EventHandler
 
-class AutoLogin : Module(Initializer.Category, "auto-login", "Cracked server joining.")
+class AutoLogin : Module(Initializer.Category, "auto-login", "Enters password after logging in to server.")
 {
     private val group = settings.defaultGroup
     private val password : Setting<String> = group.add(StringSetting.Builder().name("Password").defaultValue("").build())
-    private var num = 0
+    private var num = 0 // 😳😳😳
 
     override fun onActivate()
     {
         num = 1
     }
-    @EventHandler private fun onEventA(Event : Post)
+
+    @EventHandler private fun onTickPostEvent(Event : Post)
     {
         if (mc.world != null && num == 1)
         {
