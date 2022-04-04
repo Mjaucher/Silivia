@@ -39,7 +39,7 @@ class Interact
         {
             packetSend(PlayerActionC2SPacket(PlayerActionC2SPacket.Action.ABORT_DESTROY_BLOCK, destroyPosition, Direction.UP))
         }
-        fun place(Item : Item?, Position : BlockPos?, Direction : Direction, slotBack : Boolean)
+        fun place(Item : Item, Position: BlockPos?, Direction: Direction, slotBack: Boolean)
         {
             var boo = true
             val oldSlot = MinecraftClient.getInstance().player?.inventory?.selectedSlot
