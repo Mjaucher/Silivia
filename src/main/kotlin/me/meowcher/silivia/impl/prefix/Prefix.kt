@@ -56,7 +56,7 @@ class Prefix : Module(Initializer.Category, "prefix", "Custom Meteor Client Pref
         return prefix
     }
 
-    private enum class TextStyle
+    enum class TextStyle
     {
         Strikethrough,
         Obfuscated,

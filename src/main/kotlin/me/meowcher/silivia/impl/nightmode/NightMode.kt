@@ -54,7 +54,7 @@ class NightMode : Module(Initializer.Category, "night-mode", "Allows you to swit
         }
     }
 
-    private enum class StatusEnum
+    enum class StatusEnum
     {
         Changing,
         Static

@@ -41,12 +41,12 @@ class FakeKick : Module(Initializer.Category, "fake-kick", "Automatic disconnect
         if (autoToggle.get()) toggle()
     }
 
-    private enum class IntexEnum
+    enum class IntexEnum
     {
         Connection, Pointer, Closure
     }
 
-    private enum class KickEnum
+    enum class KickEnum
     {
         Disconnect, WrongAuth, Timeout, Flight, Verify, Custom, Intex
     }

@@ -8,7 +8,8 @@
 
 # Utility Assistance Addon ;^)
 
-__Cridits:__ https://en.wikipedia.org/wiki/Trollface
+__Credits:__ https://en.wikipedia.org/wiki/Trollface
+
 ## Needed to run:
 - __[Fabric Language Kotlin](https://www.curseforge.com/minecraft/mc-mods/fabric-language-kotlin)__ release __1.7.1+kotlin.1.6.10__.
 - __[Fabric Loader](https://github.com/FabricMC/fabric-loader)__ version __0.13.3__. 
@@ -21,5 +22,6 @@ __Cridits:__ https://en.wikipedia.org/wiki/Trollface
 - __Kill Effects__ Shows _Effects_ after the enemy's death.
 - __Multi Task__ Allows you to eat while breaking a block.
 - __No Interact__ Disable _Interaction_ with interactive blocks.
+- __NoSwing__ Removes _Swing_ hands.
 - __Prefix__ Custom Meteor Client _Prefix_ with more customizations.
 - __Tick Shift__ Timer = 2.0 frfrfr

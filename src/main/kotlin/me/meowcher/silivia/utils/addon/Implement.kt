@@ -9,6 +9,7 @@ import me.meowcher.silivia.impl.nightmode.NightMode
 import me.meowcher.silivia.impl.nointeract.NoInteract
 import me.meowcher.silivia.impl.prefix.Prefix
 import me.meowcher.silivia.impl.tickshift.TickShift
+import me.meowcher.silivia.impl.noswing.NoSwing
 import meteordevelopment.meteorclient.systems.modules.Module
 import meteordevelopment.meteorclient.systems.modules.Modules
 
@@ -27,7 +28,8 @@ class Implement
         {
             modInitialize(
                 KillEffects(), NoInteract(), NightMode(), AutoLogin(),
-                MultiTask(), TickShift(), FakeKick(), AutoKit(), Prefix()
+                MultiTask(), TickShift(), FakeKick(), AutoKit(),
+                Prefix(), NoSwing()
             )
         }
     }
