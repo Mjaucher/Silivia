@@ -1,6 +1,6 @@
 package me.meowcher.silivia.impl.tickshift
 
-import me.meowcher.silivia.utils.addon.Initializer
+import me.meowcher.silivia.core.Initializer
 import meteordevelopment.meteorclient.events.world.TickEvent.Post
 import meteordevelopment.meteorclient.settings.BoolSetting
 import meteordevelopment.meteorclient.settings.DoubleSetting

@@ -1,4 +1,4 @@
-package me.meowcher.silivia.utils.addon
+package me.meowcher.silivia.core
 
 import meteordevelopment.meteorclient.MeteorClient
 import meteordevelopment.meteorclient.addons.MeteorAddon
@@ -27,7 +27,7 @@ class Initializer : MeteorAddon()
         MeteorClient.EVENT_BUS.registerLambdaFactory("me.meowcher.silivia") { lookupInMethod : Method, klass :
         Class<*>? -> lookupInMethod.invoke(null, klass, MethodHandles.lookup()) as MethodHandles.Lookup }
 
-        Implement.modules()
+        Implements.modules()
     }
     override fun onRegisterCategories()
     {

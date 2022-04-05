@@ -1,6 +1,6 @@
 package me.meowcher.silivia.impl.multitask
 
-import me.meowcher.silivia.utils.addon.Initializer
+import me.meowcher.silivia.core.Initializer
 import me.meowcher.silivia.events.BreakingBlock
 import me.meowcher.silivia.events.UsingItem
 import meteordevelopment.meteorclient.systems.modules.Module

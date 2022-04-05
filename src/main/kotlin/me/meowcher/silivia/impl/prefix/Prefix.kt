@@ -1,7 +1,7 @@
 package me.meowcher.silivia.impl.prefix
 
-import me.meowcher.silivia.utils.addon.Initializer
-import me.meowcher.silivia.utils.addon.Reference
+import me.meowcher.silivia.core.Initializer
+import me.meowcher.silivia.core.Reference
 import meteordevelopment.meteorclient.settings.*
 import meteordevelopment.meteorclient.systems.modules.Module
 import meteordevelopment.meteorclient.utils.player.ChatUtils

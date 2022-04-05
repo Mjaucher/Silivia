@@ -1,17 +1,22 @@
 package me.meowcher.silivia.impl.noswing
 
-import me.meowcher.silivia.utils.addon.Initializer
-import meteordevelopment.meteorclient.events.packets.PacketEvent
+import me.meowcher.silivia.core.Initializer
+import meteordevelopment.meteorclient.events.packets.PacketEvent.Receive
 import meteordevelopment.meteorclient.events.world.TickEvent.Post
+import meteordevelopment.meteorclient.settings.BoolSetting
 import meteordevelopment.meteorclient.systems.modules.Module
 import meteordevelopment.orbit.EventHandler
 import net.minecraft.network.packet.s2c.play.EntityAnimationS2CPacket
 
-class NoSwing : Module(Initializer.Category, "no-swing", "Removes Swing hands.")
+class NoSwing : Module(Initializer.Category, "no-swing", "Removes all hand Swings.")
 {
-    @EventHandler private fun onPacketReceiveEvent(Event : PacketEvent.Receive)
+    private val group = settings.defaultGroup
+    private var noServerSwing = group.add(BoolSetting.Builder().name("no-server")
+        .description("Cancel swings from server.").defaultValue(false).build())
+
+    @EventHandler private fun onPacketReceiveEvent(Event : Receive)
     {
-        if (Event.packet is EntityAnimationS2CPacket)
+        if (noServerSwing.get() && Event.packet is EntityAnimationS2CPacket)
         {
             Event.isCancelled = true
         }

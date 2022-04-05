@@ -14,7 +14,7 @@
   "environment": "client",
   "entrypoints": {
     "meteor": [
-      "me.meowcher.silivia.utils.addon.Initializer"
+      "me.meowcher.silivia.core.Initializer"
     ]
   },
   "mixins": [

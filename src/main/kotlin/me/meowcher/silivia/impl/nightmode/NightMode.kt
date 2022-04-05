@@ -1,6 +1,7 @@
 package me.meowcher.silivia.impl.nightmode
 
-import me.meowcher.silivia.utils.addon.Initializer
+import me.meowcher.silivia.core.Initializer
+import me.meowcher.silivia.utils.world.UAmbience
 import net.minecraft.network.packet.s2c.play.WorldTimeUpdateS2CPacket
 import meteordevelopment.meteorclient.events.packets.PacketEvent.Receive
 import meteordevelopment.meteorclient.events.world.TickEvent.Post
@@ -45,12 +46,12 @@ class NightMode : Module(Initializer.Category, "night-mode", "Allows you to swit
         if (status.get() == StatusEnum.Static)
         {
             timeOfDay = 1000 * time.get()
-            mc.world!!.timeOfDay = timeOfDay.toLong()
+            UAmbience.setTime(timeOfDay)
         }
         else
         {
             timeOfDay += 10 * changeRate.get()
-            mc.world!!.timeOfDay = timeOfDay.toLong()
+            UAmbience.setTime(timeOfDay)
         }
     }
 

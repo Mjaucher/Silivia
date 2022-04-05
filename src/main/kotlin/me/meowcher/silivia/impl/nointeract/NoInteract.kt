@@ -1,6 +1,7 @@
 package me.meowcher.silivia.impl.nointeract
 
-import me.meowcher.silivia.utils.addon.Initializer
+import me.meowcher.silivia.core.Initializer
+import me.meowcher.silivia.utils.world.UBlock
 import meteordevelopment.meteorclient.events.packets.PacketEvent.Send
 import meteordevelopment.meteorclient.settings.*
 import meteordevelopment.meteorclient.systems.modules.Module
@@ -40,9 +41,9 @@ class NoInteract : Module(Initializer.Category, "no-interact", "Clicks disabler.
     private var blastFurnace = containersGroup.add(BoolSetting.Builder().name("blast-furnace").visible{containers.get()}.defaultValue(false).build())
     private var smoker = containersGroup.add(BoolSetting.Builder().name("smoker").visible{containers.get()}.defaultValue(false).build())
 
-    private fun openableBlocks(BlockPos : BlockPos) : Boolean
+    private fun openableBlocks(Position : BlockPos) : Boolean
     {
-        val getBlock = mc.world!!.getBlockState(BlockPos).block
+        val getBlock = UBlock.getBlock(Position)
         return (getBlock is AnvilBlock && anvil.get() || getBlock === Blocks.BEACON && beacon.get()
             || getBlock === Blocks.STONECUTTER && stoneCutter.get() || getBlock === Blocks.GRINDSTONE && grindstone.get()
             || getBlock === Blocks.LOOM && loom.get() || getBlock === Blocks.BREWING_STAND && brewingStand.get()
@@ -56,12 +57,14 @@ class NoInteract : Module(Initializer.Category, "no-interact", "Clicks disabler.
             || getBlock === Blocks.SMOKER && smoker.get()) && containers.get()
     }
 
-    @EventHandler private fun onEventA(Packet : Send)
+    @EventHandler private fun onPacketSendEvent(Packet : Send)
     {
-        if (Packet.packet !is PlayerInteractBlockC2SPacket) return
-        if (openableBlocks((Packet.packet as PlayerInteractBlockC2SPacket).blockHitResult.blockPos))
+        if (Packet.packet is PlayerInteractBlockC2SPacket)
         {
-            Packet.cancel()
+            if (openableBlocks((Packet.packet as PlayerInteractBlockC2SPacket).blockHitResult.blockPos))
+            {
+                Packet.cancel()
+            }
         }
     }
 }

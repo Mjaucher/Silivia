@@ -1,7 +1,6 @@
 package me.meowcher.silivia.impl.fakekick
 
-import me.meowcher.silivia.utils.addon.Initializer
-import me.meowcher.silivia.utils.player.Interact
+import me.meowcher.silivia.core.Initializer
 import meteordevelopment.meteorclient.events.world.TickEvent.Post
 import meteordevelopment.meteorclient.settings.*
 import meteordevelopment.meteorclient.systems.modules.Module
@@ -37,7 +36,7 @@ class FakeKick : Module(Initializer.Category, "fake-kick", "Automatic disconnect
             else -> customMessage.get()
         }
 
-        Interact.onDisconnect(DisconnectS2CPacket(LiteralText(disconnectMessage)))
+        mc.player?.networkHandler?.onDisconnect(DisconnectS2CPacket(LiteralText(disconnectMessage)))
         if (autoToggle.get()) toggle()
     }
 

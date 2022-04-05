@@ -3,11 +3,11 @@ package me.meowcher.silivia.utils.world
 import net.minecraft.entity.Entity
 import net.minecraft.util.math.BlockPos
 
-class Position
+class UPosition
 {
-    object Get
+    companion object
     {
-        fun entity(entity : Entity) : BlockPos
+        fun getEntity(entity : Entity) : BlockPos
         {
             return BlockPos(entity.blockX, entity.blockY, entity.blockZ)
         }

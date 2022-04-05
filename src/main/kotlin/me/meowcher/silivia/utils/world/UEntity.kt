@@ -1,13 +1,13 @@
 package me.meowcher.silivia.utils.world
 
-import me.meowcher.silivia.utils.misc.Minecraft.Companion.minecraft
+import me.meowcher.silivia.utils.misc.UMinecraft.Companion.minecraft
 import net.minecraft.entity.player.PlayerEntity
 
-class Entity
+class UEntity
 {
     companion object
     {
-        fun target(Range : Int) : PlayerEntity?
+        fun getTarget(Range : Int) : PlayerEntity?
         {
             for (target in minecraft.world!!.entities)
             {

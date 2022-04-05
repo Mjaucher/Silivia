@@ -1,33 +1,33 @@
 package me.meowcher.silivia.utils.world
 
-import me.meowcher.silivia.utils.misc.Minecraft.Companion.minecraft
+import me.meowcher.silivia.utils.misc.UMinecraft.Companion.minecraft
 import net.minecraft.entity.Entity
 import net.minecraft.particle.ParticleEffect
 import net.minecraft.particle.ParticleType
 import net.minecraft.sound.SoundCategory
 import net.minecraft.sound.SoundEvent
 
-class Spawn
+class USpawn
 {
     companion object
     {
-        fun sound(Sound : List<SoundEvent?>)
+        fun playSound(Sound : List<SoundEvent?>)
         {
             for (Event in Sound)
             {
                 minecraft.player?.playSound(Event, SoundCategory.MASTER, 1f, 1f)
             }
         }
-        fun sound(Sound : SoundEvent?)
+        fun playSound(Sound : SoundEvent?)
         {
             minecraft.player?.playSound(Sound, SoundCategory.MASTER, 1f, 1f)
         }
-        fun entity(Entity : Entity, SpawnPosX : Double, SpawnPosY : Double, SpawnPosZ : Double)
+        fun addEntity(Entity : Entity, SpawnPosX : Double, SpawnPosY : Double, SpawnPosZ : Double)
         {
             Entity.updatePosition(SpawnPosX, SpawnPosY, SpawnPosZ)
             minecraft.world?.addEntity(Entity.id, Entity)
         }
-        fun particle(particleType : MutableList<ParticleType<*>>, posX : Double, posY : Double, posZ : Double)
+        fun addParticle(particleType : MutableList<ParticleType<*>>, posX : Double, posY : Double, posZ : Double)
         {
             for (ParticleType in particleType)
             {

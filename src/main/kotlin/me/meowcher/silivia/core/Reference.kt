@@ -1,4 +1,4 @@
-package me.meowcher.silivia.utils.addon
+package me.meowcher.silivia.core
 
 import meteordevelopment.meteorclient.utils.render.color.SettingColor
 

@@ -1,6 +1,6 @@
 package me.meowcher.silivia.utils.misc
 
-class Math
+class UMath
 {
     companion object
     {

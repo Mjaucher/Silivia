@@ -1,7 +1,7 @@
 package me.meowcher.silivia.impl.autologin
 
-import me.meowcher.silivia.utils.addon.Initializer
-import me.meowcher.silivia.utils.chat.Message
+import me.meowcher.silivia.core.Initializer
+import me.meowcher.silivia.utils.chat.UMessages
 import meteordevelopment.meteorclient.events.world.TickEvent.Post
 import meteordevelopment.meteorclient.settings.*
 import meteordevelopment.meteorclient.systems.modules.Module
@@ -22,7 +22,7 @@ class AutoLogin : Module(Initializer.Category, "auto-login", "Enters password af
     {
         if (mc.world != null && num == 1)
         {
-            Message.send("/login " + password.get())
+            UMessages.doSend("/login " + password.get())
             num = 0
         }
     }

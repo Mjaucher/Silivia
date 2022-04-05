@@ -2,10 +2,10 @@ package me.meowcher.silivia.utils.misc
 
 import net.minecraft.client.MinecraftClient
 
-class Minecraft
+class UMinecraft
 {
     companion object
     {
-        val minecraft : MinecraftClient = MinecraftClient.getInstance()
+        val minecraft: MinecraftClient = MinecraftClient.getInstance()
     }
 }
