@@ -27,7 +27,7 @@ class Implements
         fun modules()
         {
             modInitialize(KillEffects(), NoInteract(), NightMode(), AutoLogin(), NoSwing(),
-                MultiTask(), TickShift(), FakeKick(), AutoKit(), Prefix(),
+                MultiTask(), TickShift(), FakeKick(), AutoKit(), Prefix()
             )
         }
     }

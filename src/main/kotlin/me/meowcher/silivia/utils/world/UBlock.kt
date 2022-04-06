@@ -11,5 +11,8 @@ class UBlock
         fun getBlock(Position : BlockPos) : Block? {
             return minecraft.world!!.getBlockState(Position).block
         }
+        fun isAir(Position : BlockPos) : Boolean {
+            return minecraft.world?.getBlockState(Position)?.isAir == true
+        }
     }
 }

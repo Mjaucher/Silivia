@@ -1,6 +1,8 @@
 package me.meowcher.silivia.impl.tickshift
 
 import me.meowcher.silivia.core.Initializer
+import me.meowcher.silivia.utils.world.UAmbience
+import me.meowcher.silivia.utils.world.URender
 import meteordevelopment.meteorclient.events.world.TickEvent.Post
 import meteordevelopment.meteorclient.settings.BoolSetting
 import meteordevelopment.meteorclient.settings.DoubleSetting
@@ -26,11 +28,11 @@ class TickShift : Module(Initializer.Category, "tick-shift", "timer = 2.0")
 
     private fun default()
     {
-        setTimer(1.0)
         tickShiftDone = false
         notificationDeath = false
         passivePauseTicks = 0
         activePauseTicks = timerTicks.get()
+        URender.setTick(1.0)
     }
 
     override fun onActivate()
@@ -57,7 +59,7 @@ class TickShift : Module(Initializer.Category, "tick-shift", "timer = 2.0")
             if (!notificationDeath) notification()
             if (activePauseTicks >= 0 && whenPlayerMove)
             {
-                setTimer(timerValue.get())
+                URender.setTick(timerValue.get())
                 activePauseTicks--
             }
         }
@@ -67,11 +69,6 @@ class TickShift : Module(Initializer.Category, "tick-shift", "timer = 2.0")
             if (autoToggle.get()) toggle()
             default()
         }
-    }
-
-    private fun setTimer(Value : Double)
-    {
-        Modules.get().get(Timer::class.java).setOverride(Value)
     }
 
     private fun notification()

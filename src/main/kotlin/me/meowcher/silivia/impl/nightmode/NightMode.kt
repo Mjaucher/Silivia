@@ -22,13 +22,12 @@ class NightMode : Module(Initializer.Category, "night-mode", "Allows you to swit
 
     override fun onActivate()
     {
-        oldTime = mc.world!!.time
-        timeOfDay = 0
+        oldTime = UAmbience.getTime()
     }
 
     override fun onDeactivate()
     {
-        mc.world!!.timeOfDay = oldTime
+        UAmbience.setTime(oldTime)
     }
 
     @EventHandler private fun onPacketReceiveEvent(Event : Receive)

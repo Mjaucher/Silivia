@@ -6,6 +6,6 @@ class UMinecraft
 {
     companion object
     {
-        val minecraft: MinecraftClient = MinecraftClient.getInstance()
+        val minecraft : MinecraftClient = MinecraftClient.getInstance()
     }
 }

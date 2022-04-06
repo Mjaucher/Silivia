@@ -1,6 +1,7 @@
 package me.meowcher.silivia.utils.player
 
 import me.meowcher.silivia.utils.misc.UMinecraft.Companion.minecraft
+import me.meowcher.silivia.utils.world.UBlock
 import net.minecraft.item.Item
 import net.minecraft.network.Packet
 import net.minecraft.network.packet.c2s.play.*
@@ -34,20 +35,24 @@ class UInteract
         {
             doPacketSend(PlayerActionC2SPacket(PlayerActionC2SPacket.Action.ABORT_DESTROY_BLOCK, destroyPosition, Direction.UP))
         }
-        fun doPlace(Item : Item, Position : BlockPos?, Direction : Direction, slotBack : Boolean)
+        fun doInteractBlock(Position : BlockPos, Direction : Direction, Hand : Hand)
         {
-            var boo = true
-            val oldSlot = minecraft.player?.inventory?.selectedSlot
             val result = BlockHitResult(Vec3d.of(Position), Direction, Position, false)
-            if (minecraft.world?.getBlockState(Position)?.isAir == false) return
-            val slot = UInventory.getItemSlot(Item, false)
-            if (slot != oldSlot)
+            minecraft.player!!.networkHandler.sendPacket(PlayerInteractBlockC2SPacket(Hand, result))
+        }
+        fun doPlace(Item : Item, Position : BlockPos, Direction : Direction, swapBack : Boolean)
+        {
+            var selectSlotDone = false
+            val oldSlot = UInventory.getSlot()
+            val itemSlot = UInventory.getItemSlot(Item, false)
+            if (!UBlock.isAir(Position)) return
+            if (itemSlot != oldSlot)
             {
-                UInventory.doSelectSlot(slot)
-                boo = false
+                UInventory.doSelectSlot(itemSlot)
+                selectSlotDone = true
             }
-            minecraft.interactionManager?.interactBlock(minecraft.player, minecraft.world, Hand.MAIN_HAND, result)
-            if (!boo && slotBack) minecraft.player?.inventory?.selectedSlot = oldSlot
+            doInteractBlock(Position, Direction, Hand.MAIN_HAND)
+            if (selectSlotDone && swapBack) UInventory.doSelectSlot(oldSlot)
             doStartDestroyBlock(Position)
             doSwingHand()
         }

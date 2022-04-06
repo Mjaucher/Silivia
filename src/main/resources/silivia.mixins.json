@@ -3,7 +3,8 @@
   "package": "me.meowcher.silivia.mixins",
   "compatibilityLevel": "JAVA_17",
   "client": [
-    "Minecraft"
+    "Minecraft",
+    "RenderTick"
   ],
   "injectors": {
     "defaultRequire": 1

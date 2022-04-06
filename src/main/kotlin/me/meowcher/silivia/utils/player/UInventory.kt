@@ -13,9 +13,13 @@ class UInventory
         {
             UInteract.doPacketSend(UpdateSelectedSlotC2SPacket(slotNumber))
         }
-        fun doSelectSlot(slotNumber : Int)
+        fun doSelectSlot(slotNumber : Int?)
         {
             minecraft.player?.inventory?.selectedSlot = slotNumber
+        }
+        fun getSlot() : Int?
+        {
+            return minecraft.player?.inventory?.selectedSlot
         }
         fun getItemSlot(Item : Item?, Inventory : Boolean) : Int
         {

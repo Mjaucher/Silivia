@@ -6,6 +6,10 @@ class UAmbience
 {
     companion object
     {
+        fun getTime() : Long
+        {
+            return minecraft.world!!.time
+        }
         fun setTime(Time : Long)
         {
             minecraft.world!!.timeOfDay = Time

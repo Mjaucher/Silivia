@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.Mixin;
 import meteordevelopment.meteorclient.MeteorClient;
 
-@Mixin (value = MinecraftClient.class, priority = 1001) public abstract class Minecraft
+@Mixin (value = MinecraftClient.class, priority = Integer.MAX_VALUE) public abstract class Minecraft
 {
     @Redirect (method = "doItemUse", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/network/ClientPlayerInteractionManager;isBreakingBlock()Z"))
     public boolean doItemUse(ClientPlayerInteractionManager CPIManager)
