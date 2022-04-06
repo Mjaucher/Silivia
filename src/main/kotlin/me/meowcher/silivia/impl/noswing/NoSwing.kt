@@ -27,6 +27,7 @@ class NoSwing : Module(Initializer.Category, "no-swing", "Removes all hand Swing
         val pl = mc.player!!
         pl.handSwinging = false
         pl.handSwingProgress = 0F
+        pl.lastHandSwingProgress = 0F
         pl.handSwingTicks = 0
     }
 }
