@@ -1,5 +1,6 @@
 package me.meowcher.silivia.impl.fakekick
 
+import me.meowcher.silivia.core.Global
 import me.meowcher.silivia.core.Initializer
 import meteordevelopment.meteorclient.events.world.TickEvent.Post
 import meteordevelopment.meteorclient.settings.*
@@ -8,7 +9,7 @@ import meteordevelopment.orbit.EventHandler
 import net.minecraft.network.packet.s2c.play.DisconnectS2CPacket
 import net.minecraft.text.LiteralText
 
-class FakeKick : Module(Initializer.Category, "fake-kick", "Automatic disconnect with Fake reason.")
+class FakeKick : Global, Module(Initializer.Category, "fake-kick", "Automatic disconnect with Fake reason.")
 {
     private val group = settings.defaultGroup
     private var disconnectReason = group.add(EnumSetting.Builder().name("message").description("Disconnect message.").defaultValue(KickEnum.Intex).build())
@@ -36,7 +37,7 @@ class FakeKick : Module(Initializer.Category, "fake-kick", "Automatic disconnect
             else -> customMessage.get()
         }
 
-        mc.player?.networkHandler?.onDisconnect(DisconnectS2CPacket(LiteralText(disconnectMessage)))
+        network?.onDisconnect(DisconnectS2CPacket(LiteralText(disconnectMessage)))
         if (autoToggle.get()) toggle()
     }
 

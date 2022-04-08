@@ -1,5 +1,6 @@
 package me.meowcher.silivia.impl.prefix
 
+import me.meowcher.silivia.core.Global
 import me.meowcher.silivia.core.Initializer
 import me.meowcher.silivia.core.Reference
 import meteordevelopment.meteorclient.settings.*
@@ -9,7 +10,7 @@ import net.minecraft.text.LiteralText
 import net.minecraft.text.TextColor
 import net.minecraft.util.Formatting.*
 
-class Prefix : Module(Initializer.Category, "prefix", "Custom Meteor Client Prefix with more customizations.")
+class Prefix : Global, Module(Initializer.Category, "prefix", "Custom Meteor Client Prefix with more customizations.")
 {
     private val group = settings.defaultGroup
     private var colorGroup = settings.createGroup("Color Settings")

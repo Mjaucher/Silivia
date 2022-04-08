@@ -1,5 +1,6 @@
 package me.meowcher.silivia.impl.killeffects
 
+import me.meowcher.silivia.core.Global
 import me.meowcher.silivia.core.Initializer
 import me.meowcher.silivia.utils.world.USpawn
 import meteordevelopment.meteorclient.events.world.TickEvent.Post
@@ -11,7 +12,7 @@ import net.minecraft.entity.LightningEntity
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.particle.ParticleTypes
 
-class KillEffects : Module(Initializer.Category, "kill-effects", "Shows Effects after Death.")
+class KillEffects : Global, Module(Initializer.Category, "kill-effects", "Shows Effects after Death.")
 {
     private var group = settings.defaultGroup
     private var thunderGroup = settings.createGroup("Thunder Settings")
@@ -32,9 +33,9 @@ class KillEffects : Module(Initializer.Category, "kill-effects", "Shows Effects 
 
     @EventHandler private fun onTickPostEvent(Event : Post)
     {
-        for (entity in mc.world!!.entities)
+        for (entity in world!!.entities)
         {
-            if (entity is PlayerEntity && mc.player!!.distanceTo(entity) < range.get())
+            if (entity is PlayerEntity && player!!.distanceTo(entity) < range.get())
             {
                 if (0 < entity.health) spawnEffectsEnd = true
                 if (spawnEffectsEnd && entity.health <= 0F) addEffects(entity.x, entity.y, entity.z)

@@ -1,6 +1,6 @@
 plugins {
     id 'fabric-loom' version '0.10-SNAPSHOT'
-    id 'org.jetbrains.kotlin.jvm' version '1.6.10'
+    id 'org.jetbrains.kotlin.jvm' version '1.6.20'
 }
 
 repositories {
@@ -25,6 +25,11 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
     modImplementation "net.fabricmc:fabric-language-kotlin:${project.kotlin_fabric}"
     modImplementation "meteordevelopment:meteor-client:${project.meteor_version}"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${project.kotlinx_coroutines}"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:${project.kotlinx_coroutines}"
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:${project.kotlinx_serialization}"
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json-jvm:${project.kotlinx_serialization}"
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-cbor-jvm:${project.kotlinx_serialization}"
     implementation "org.jetbrains.kotlin:kotlin-reflect:${project.kotlin_jetbrains}"
     implementation "org.jetbrains.kotlin:kotlin-stdlib:${project.kotlin_jetbrains}"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${project.kotlin_jetbrains}"

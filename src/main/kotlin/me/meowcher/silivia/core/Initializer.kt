@@ -27,7 +27,7 @@ class Initializer : MeteorAddon()
         MeteorClient.EVENT_BUS.registerLambdaFactory("me.meowcher.silivia") { lookupInMethod : Method, klass :
         Class<*>? -> lookupInMethod.invoke(null, klass, MethodHandles.lookup()) as MethodHandles.Lookup }
 
-        Implements.modules()
+        Implements.modsInitialize()
     }
     override fun onRegisterCategories()
     {

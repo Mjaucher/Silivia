@@ -1,16 +1,15 @@
 package me.meowcher.silivia.utils.player
 
-import me.meowcher.silivia.utils.misc.UMinecraft.Companion.minecraft
+import me.meowcher.silivia.core.Global
 import net.minecraft.util.math.MathHelper
 
 class UMovement
 {
-    companion object
+    companion object : Global
     {
         fun doCenterTp()
         {
-            minecraft.player!!.setPosition((MathHelper.floor(minecraft.player!!.x)) + 0.5,
-                minecraft.player!!.y, (MathHelper.floor(minecraft.player!!.z)) + 0.5)
+            player!!.setPosition((MathHelper.floor(player!!.x)) + 0.5, player!!.y, (MathHelper.floor(player!!.z)) + 0.5)
         }
     }
 }

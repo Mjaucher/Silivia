@@ -6,11 +6,11 @@ class URender
     {
         private var tickCounter : Double = 1.0
 
-        fun setTick(Value : Double)
+        fun setTimer(Value : Double)
         {
             tickCounter = Value
         }
-        fun getTick() : Double
+        fun getTimer() : Double
         {
             return tickCounter
         }

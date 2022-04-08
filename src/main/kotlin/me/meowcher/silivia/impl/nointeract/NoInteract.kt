@@ -1,5 +1,6 @@
 package me.meowcher.silivia.impl.nointeract
 
+import me.meowcher.silivia.core.Global
 import me.meowcher.silivia.core.Initializer
 import me.meowcher.silivia.utils.world.UBlock
 import meteordevelopment.meteorclient.events.packets.PacketEvent.Send
@@ -12,7 +13,7 @@ import net.minecraft.block.ShulkerBoxBlock
 import net.minecraft.network.packet.c2s.play.PlayerInteractBlockC2SPacket
 import net.minecraft.util.math.BlockPos
 
-class NoInteract : Module(Initializer.Category, "no-interact", "Clicks disabler.")
+class NoInteract : Global, Module(Initializer.Category, "no-interact", "Clicks disabler.")
 {
     // rewrite soon
     private var miscellaneousGroup = settings.createGroup("Miscellaneous Settings")

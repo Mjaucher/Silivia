@@ -1,5 +1,6 @@
 package me.meowcher.silivia.impl.tickshift
 
+import me.meowcher.silivia.core.Global
 import me.meowcher.silivia.core.Initializer
 import me.meowcher.silivia.utils.world.UAmbience
 import me.meowcher.silivia.utils.world.URender
@@ -13,7 +14,7 @@ import meteordevelopment.meteorclient.systems.modules.world.Timer
 import meteordevelopment.meteorclient.utils.player.ChatUtils
 import meteordevelopment.orbit.EventHandler
 
-class TickShift : Module(Initializer.Category, "tick-shift", "timer = 2.0")
+class TickShift : Global, Module(Initializer.Category, "tick-shift", "timer = 2.0")
 {
     private val group = settings.defaultGroup
     private val timerValue = group.add(DoubleSetting.Builder().name("timer-value").defaultValue(5.0).min(1.0).sliderMin(1.0).sliderMax(25.0).build())
@@ -32,7 +33,7 @@ class TickShift : Module(Initializer.Category, "tick-shift", "timer = 2.0")
         notificationDeath = false
         passivePauseTicks = 0
         activePauseTicks = timerTicks.get()
-        URender.setTick(1.0)
+        URender.setTimer(1.0)
     }
 
     override fun onActivate()
@@ -47,8 +48,8 @@ class TickShift : Module(Initializer.Category, "tick-shift", "timer = 2.0")
 
     @EventHandler private fun onTickPostEvent(Event : Post)
     {
-        val whenPlayerMove = mc.options.forwardKey.isPressed||mc.options.leftKey.isPressed
-            ||mc.options.rightKey.isPressed||mc.options.backKey.isPressed
+        val whenPlayerMove = options.forwardKey.isPressed || options.leftKey.isPressed
+            || options.rightKey.isPressed || options.backKey.isPressed
 
         if (!tickShiftDone && !whenPlayerMove) passivePauseTicks++
         if (whenPlayerMove) passivePauseTicks = 0
@@ -59,7 +60,7 @@ class TickShift : Module(Initializer.Category, "tick-shift", "timer = 2.0")
             if (!notificationDeath) notification()
             if (activePauseTicks >= 0 && whenPlayerMove)
             {
-                URender.setTick(timerValue.get())
+                URender.setTimer(timerValue.get())
                 activePauseTicks--
             }
         }

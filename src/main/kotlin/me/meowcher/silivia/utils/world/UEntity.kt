@@ -1,19 +1,19 @@
 package me.meowcher.silivia.utils.world
 
-import me.meowcher.silivia.utils.misc.UMinecraft.Companion.minecraft
+import me.meowcher.silivia.core.Global
 import net.minecraft.entity.player.PlayerEntity
 
 class UEntity
 {
-    companion object
+    companion object : Global
     {
         fun getTarget(Range : Int) : PlayerEntity?
         {
-            for (target in minecraft.world!!.entities)
+            for (target in world!!.entities)
             {
-                if (minecraft.player!!.distanceTo(target) <= Range)
+                if (player!!.distanceTo(target) <= Range)
                 {
-                    if (target is PlayerEntity && target !== minecraft.player)
+                    if (target is PlayerEntity && target !== player)
                     {
                         return target
                     }

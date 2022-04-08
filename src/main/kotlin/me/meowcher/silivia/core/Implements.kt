@@ -2,6 +2,7 @@ package me.meowcher.silivia.core
 
 import me.meowcher.silivia.impl.autokit.AutoKit
 import me.meowcher.silivia.impl.autologin.AutoLogin
+import me.meowcher.silivia.impl.changer.Changer
 import me.meowcher.silivia.impl.fakekick.FakeKick
 import me.meowcher.silivia.impl.killeffects.KillEffects
 import me.meowcher.silivia.impl.multitask.MultiTask
@@ -18,17 +19,28 @@ class Implements
 {
     companion object
     {
-        private fun modInitialize(vararg Features : Module?)
+        private fun modsInitialize(vararg Features : Module?)
         {
             for (modules in Features)
             {
                 Modules.get().add(modules)
             }
         }
-        fun modules()
+        fun modsInitialize()
         {
-            modInitialize(KillEffects(), NoInteract(), NightMode(), AutoLogin(), NoSwing(),
-                MultiTask(), TickShift(), FakeKick(), AutoKit(), Prefix(), ScreenWalk()
+            modsInitialize(
+                KillEffects(),
+                ScreenWalk(),
+                NoInteract(),
+                NightMode(),
+                AutoLogin(),
+                MultiTask(),
+                TickShift(),
+                FakeKick(),
+                NoSwing(),
+                Changer(),
+                AutoKit(),
+                Prefix(),
             )
         }
     }

@@ -1,6 +1,6 @@
 package me.meowcher.silivia.utils.player
 
-import me.meowcher.silivia.utils.misc.UMinecraft.Companion.minecraft
+import me.meowcher.silivia.core.Global
 import me.meowcher.silivia.utils.world.UBlock
 import net.minecraft.item.Item
 import net.minecraft.network.Packet
@@ -13,15 +13,15 @@ import net.minecraft.util.math.Vec3d
 
 class UInteract
 {
-    companion object
+    companion object : Global
     {
         fun doPacketSend(Packet : Packet<*>)
         {
-            minecraft.networkHandler?.sendPacket(Packet)
+            network?.sendPacket(Packet)
         }
         private fun doSwingHand()
         {
-            minecraft.player?.swingHand(Hand.MAIN_HAND)
+            player?.swingHand(Hand.MAIN_HAND)
         }
         fun doUse()
         {
@@ -38,7 +38,7 @@ class UInteract
         fun doInteractBlock(Position : BlockPos, Direction : Direction, Hand : Hand)
         {
             val result = BlockHitResult(Vec3d.of(Position), Direction, Position, false)
-            minecraft.player!!.networkHandler.sendPacket(PlayerInteractBlockC2SPacket(Hand, result))
+            network?.sendPacket(PlayerInteractBlockC2SPacket(Hand, result))
         }
         fun doPlace(Item : Item, Position : BlockPos, Direction : Direction, swapBack : Boolean)
         {

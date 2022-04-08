@@ -1,22 +1,22 @@
 package me.meowcher.silivia.utils.world
 
-import me.meowcher.silivia.utils.misc.UMinecraft.Companion.minecraft
+import me.meowcher.silivia.core.Global
 
 class UAmbience
 {
-    companion object
+    companion object : Global
     {
         fun getTime() : Long
         {
-            return minecraft.world!!.time
+            return world!!.time
         }
         fun setTime(Time : Long)
         {
-            minecraft.world!!.timeOfDay = Time
+            world!!.timeOfDay = Time
         }
         fun setTime(Time : Int)
         {
-            minecraft.world!!.timeOfDay = Time.toLong()
+            world!!.timeOfDay = Time.toLong()
         }
     }
 }

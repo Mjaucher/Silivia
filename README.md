@@ -23,6 +23,5 @@ __Credits:__ https://en.wikipedia.org/wiki/Trollface
 - __Multi Task__ Allows you to eat while breaking a block.
 - __No Interact__ Disable _Interaction_ with interactive blocks.
 - __NoSwing__ Removes all hand _Swings_.
-- __ScreenWalk__ Allows you to perform actions when you are dead or in sleep _Screen_.
 - __Prefix__ Custom Meteor Client _Prefix_ with more customizations.
 - __Tick Shift__ Timer = 2.0 frfrfr
