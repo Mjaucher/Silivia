@@ -11,7 +11,7 @@
 __Credits:__ https://en.wikipedia.org/wiki/Trollface
 
 ## Needed to run:
-- __[Fabric Language Kotlin](https://www.curseforge.com/minecraft/mc-mods/fabric-language-kotlin)__ release __1.7.1+kotlin.1.6.10__.
+- __[Fabric Language Kotlin](https://www.curseforge.com/minecraft/mc-mods/fabric-language-kotlin)__ release __1.7.2+kotlin.1.6.20__.
 - __[Fabric Loader](https://github.com/FabricMC/fabric-loader)__ version __0.13.3__. 
 - __[Meteor Client](https://github.com/MeteorDevelopment/meteor-client)__ latest version.
 
