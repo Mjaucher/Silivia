@@ -10,12 +10,11 @@
 
 __Credits:__ https://en.wikipedia.org/wiki/Trollface
 
-## Needed to run:
-- __[Fabric Language Kotlin](https://www.curseforge.com/minecraft/mc-mods/fabric-language-kotlin)__ release __1.7.2+kotlin.1.6.20__.
-- __[Fabric Loader](https://github.com/FabricMC/fabric-loader)__ version __0.13.3__. 
-- __[Meteor Client](https://github.com/MeteorDevelopment/meteor-client)__ latest version.
+### How to run:
+- Download silivia-kotlin.jar here: https://github.com/Jackesparragos/Silivia/releases/latest
+- Put this file in your mod folder.
 
-## Silivia Features:  
+### Features:  
 - __Auto Kit__ Takes _Kit_ after your death.
 - __Auto Login__ Enters password after logging in to server.
 - __Fake Kick__ Automatic disconnect with _Fake_ reason
