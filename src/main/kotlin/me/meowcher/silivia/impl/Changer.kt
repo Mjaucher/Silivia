@@ -1,4 +1,4 @@
-package me.meowcher.silivia.impl.changer
+package me.meowcher.silivia.impl
 
 import me.meowcher.silivia.core.Global
 import me.meowcher.silivia.core.Initializer
@@ -9,7 +9,6 @@ import meteordevelopment.meteorclient.settings.EnumSetting
 import meteordevelopment.meteorclient.settings.IntSetting
 import meteordevelopment.meteorclient.systems.modules.Module
 import meteordevelopment.orbit.EventHandler
-
 
 class Changer : Global, Module(Initializer.Category, "changer", "Enters password after logging in to server.")
 {
@@ -24,7 +23,7 @@ class Changer : Global, Module(Initializer.Category, "changer", "Enters password
     private var weatherGroup = settings.createGroup("Weather Settings")
     private var weather = weatherGroup.add(BoolSetting.Builder().name("weather").defaultValue(false).build())
     private var weatherChoice = weatherGroup.add(EnumSetting.Builder().name("weather-choice").defaultValue(WeatherEnum.Clear).visible{weather.get()}.build())
-    private var gradientValue = weatherGroup.add(DoubleSetting.Builder().name("gradient-value").defaultValue(0.0).min(0.0).sliderMax(4.0).visible{weather.get()}.build())
+    private var gradientValue = weatherGroup.add(DoubleSetting.Builder().name("gradient-value").defaultValue(0.0).min(0.0).sliderMax(1.0).visible{weather.get()}.build())
 
     private var fps = 0
     private var level = 0
@@ -70,7 +69,7 @@ class Changer : Global, Module(Initializer.Category, "changer", "Enters password
 
     enum class WeatherEnum
     {
-        Rain,
-        Clear
+        Clear,
+        Rain
     }
 }

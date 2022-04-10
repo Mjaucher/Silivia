@@ -1,4 +1,4 @@
-package me.meowcher.silivia.impl.killeffects
+package me.meowcher.silivia.impl
 
 import me.meowcher.silivia.core.Global
 import me.meowcher.silivia.core.Initializer

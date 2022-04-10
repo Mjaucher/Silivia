@@ -1,4 +1,4 @@
-package me.meowcher.silivia.impl.nointeract
+package me.meowcher.silivia.impl
 
 import me.meowcher.silivia.core.Global
 import me.meowcher.silivia.core.Initializer

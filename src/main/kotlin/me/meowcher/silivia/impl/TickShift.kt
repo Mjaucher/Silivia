@@ -1,16 +1,13 @@
-package me.meowcher.silivia.impl.tickshift
+package me.meowcher.silivia.impl
 
 import me.meowcher.silivia.core.Global
 import me.meowcher.silivia.core.Initializer
-import me.meowcher.silivia.utils.world.UAmbience
 import me.meowcher.silivia.utils.world.URender
 import meteordevelopment.meteorclient.events.world.TickEvent.Post
 import meteordevelopment.meteorclient.settings.BoolSetting
 import meteordevelopment.meteorclient.settings.DoubleSetting
 import meteordevelopment.meteorclient.settings.IntSetting
 import meteordevelopment.meteorclient.systems.modules.Module
-import meteordevelopment.meteorclient.systems.modules.Modules
-import meteordevelopment.meteorclient.systems.modules.world.Timer
 import meteordevelopment.meteorclient.utils.player.ChatUtils
 import meteordevelopment.orbit.EventHandler
 
