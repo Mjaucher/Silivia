@@ -11,7 +11,7 @@
 __Credits:__ https://en.wikipedia.org/wiki/Trollface
 
 ### How to run:
-- Download silivia-kotlin.jar here: https://github.com/Jackesparragos/Silivia/releases/latest
+- Download "silivia-kotlin.jar" here: https://github.com/Jackesparragos/Silivia/releases/latest
 - Put this file in your mod folder.
 
 ### Features:  
