@@ -7,16 +7,13 @@ import net.minecraft.text.Text
 
 class UMessages
 {
-    companion object
+    companion object : Global
     {
         fun doSend(Message : String)
         {
             UInteract.doPacketSend(ChatMessageC2SPacket(Message))
         }
-    }
-    object Fake : Global
-    {
-        fun doSend(Message : String)
+        fun doFakeSend(Message : String)
         {
             hud.chatHud.addMessage(Text.of(Message))
         }

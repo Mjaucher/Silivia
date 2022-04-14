@@ -18,7 +18,7 @@ class NightMode : Global, Module(Initializer.Category, "night-mode", "Allows you
     private var moonAnimation = group.add(BoolSetting.Builder().name("moon-animation").defaultValue(false).visible { status.get() == StatusEnum.Changing } .build())
     private var time = group.add(IntSetting.Builder().name("time-of-day").defaultValue(18).min(0).sliderMax(24).visible { status.get() == StatusEnum.Static } .build())
 
-    private var oldTime : Long = 0
+    private var oldTime = 0L
     private var timeOfDay = 0
 
     override fun onActivate()

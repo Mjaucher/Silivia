@@ -12,12 +12,8 @@ import net.minecraft.text.LiteralText
 class FakeKick : Global, Module(Initializer.Category, "fake-kick", "Automatic disconnect with Fake reason.")
 {
     private val group = settings.defaultGroup
-    private var disconnectReason = group.add(EnumSetting.Builder().name("message").description("Disconnect message.").defaultValue(
-        KickEnum.Intex
-    ).build())
-    private var internalExceptionReason = group.add(EnumSetting.Builder().name("reason").description("Internal Exception Reason.").defaultValue(
-        IntexEnum.Connection
-    ).visible { disconnectReason.get() == KickEnum.Intex } .build())
+    private var disconnectReason = group.add(EnumSetting.Builder().name("message").description("Disconnect message.").defaultValue(KickEnum.Intex).build())
+    private var internalExceptionReason = group.add(EnumSetting.Builder().name("reason").description("Internal Exception Reason.").defaultValue(IntexEnum.Connection).visible { disconnectReason.get() == KickEnum.Intex } .build())
     private var customMessage = group.add(StringSetting.Builder().name("text").defaultValue("§c☠ T§6r§eo§al§bl§9e§dd ☠").visible { disconnectReason.get() == KickEnum.Custom } .build())
     private var autoToggle = group.add(BoolSetting.Builder().name("auto-toggle").defaultValue(true).build())
 

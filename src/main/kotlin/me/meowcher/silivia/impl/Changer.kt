@@ -10,12 +10,12 @@ import meteordevelopment.meteorclient.settings.IntSetting
 import meteordevelopment.meteorclient.systems.modules.Module
 import meteordevelopment.orbit.EventHandler
 
-class Changer : Global, Module(Initializer.Category, "changer", "Enters password after logging in to server.")
+class Changer : Global, Module(Initializer.Category, "changer", "Changes in-game parameters (EXP Bar, Weather, Fov, FPS limit, and more).")
 {
-    private val defaultGroup = settings.defaultGroup
-    private var fpsMax = defaultGroup.add(IntSetting.Builder().name("fps-max").defaultValue(120).sliderRange(0, 180).build())
-    private var fovValue = defaultGroup.add(DoubleSetting.Builder().name("fov-value").defaultValue(120.0).min(0.0).sliderMax(360.0).build())
-    private var gammaValue = defaultGroup.add(DoubleSetting.Builder().name("gamma").defaultValue(666.0).min(0.0).sliderMax(999.0).build())
+    private var mcOptionsGroup = settings.createGroup("Better Minecraft Options")
+    private var fpsMax = mcOptionsGroup.add(IntSetting.Builder().name("fps-max").defaultValue(120).sliderRange(0, 180).build())
+    private var fovValue = mcOptionsGroup.add(DoubleSetting.Builder().name("fov-value").defaultValue(120.0).min(0.0).sliderMax(360.0).build())
+    private var gammaValue = mcOptionsGroup.add(DoubleSetting.Builder().name("gamma").defaultValue(666.0).min(0.0).sliderMax(999.0).build())
     private var experienceGroup = settings.createGroup("Experience Bar Settings")
     private var experience = experienceGroup.add(BoolSetting.Builder().name("experience-bar").defaultValue(false).build())
     private var levelNumber = experienceGroup.add(IntSetting.Builder().name("level").defaultValue(99).sliderRange(0, 250).visible{experience.get()}.build())

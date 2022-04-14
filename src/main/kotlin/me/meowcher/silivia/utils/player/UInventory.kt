@@ -17,7 +17,7 @@ class UInventory
         {
             inventory?.selectedSlot = slotNumber
         }
-        fun getSlot() : Int?
+        fun getCurrentSlot() : Int?
         {
             return inventory?.selectedSlot
         }

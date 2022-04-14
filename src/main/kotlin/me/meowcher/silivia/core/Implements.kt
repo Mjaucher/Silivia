@@ -19,7 +19,6 @@ class Implements
         {
             modsInitialize(
                 KillEffects(),
-                ScreenWalk(),
                 NoInteract(),
                 NightMode(),
                 AutoLogin(),

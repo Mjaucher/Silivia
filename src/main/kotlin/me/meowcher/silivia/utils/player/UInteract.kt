@@ -19,7 +19,7 @@ class UInteract
         {
             network?.sendPacket(Packet)
         }
-        private fun doSwingHand()
+        fun doSwingHand()
         {
             player?.swingHand(Hand.MAIN_HAND)
         }
@@ -39,22 +39,6 @@ class UInteract
         {
             val result = BlockHitResult(Vec3d.of(Position), Direction, Position, false)
             network?.sendPacket(PlayerInteractBlockC2SPacket(Hand, result))
-        }
-        fun doPlace(Item : Item, Position : BlockPos, Direction : Direction, swapBack : Boolean)
-        {
-            var selectSlotDone = false
-            val oldSlot = UInventory.getSlot()
-            val itemSlot = UInventory.getItemSlot(Item, false)
-            if (!UBlock.isAir(Position)) return
-            if (itemSlot != oldSlot)
-            {
-                UInventory.doSelectSlot(itemSlot)
-                selectSlotDone = true
-            }
-            doInteractBlock(Position, Direction, Hand.MAIN_HAND)
-            if (selectSlotDone && swapBack) UInventory.doSelectSlot(oldSlot)
-            doStartDestroyBlock(Position)
-            doSwingHand()
         }
     }
 }

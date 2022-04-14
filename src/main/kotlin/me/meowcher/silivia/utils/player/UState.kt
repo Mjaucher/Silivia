@@ -10,5 +10,7 @@ class UState
         val onLadder = player!!.isHoldingOntoLadder
         val onFire = player!!.isOnFire
         val onWater = player!!.isTouchingWater
+        val onGround = player!!.isOnGround
+        val onJump = options.jumpKey.isPressed || player!!.input.jumping
     }
 }

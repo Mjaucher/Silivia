@@ -20,9 +20,12 @@ class KillEffects : Global, Module(Initializer.Category, "kill-effects", "Shows 
     private var particleGroup = settings.createGroup("Particle Settings")
     private var range = group.add(IntSetting.Builder().name("range").defaultValue(15).sliderRange(0, 250).build())
     private var thunder = thunderGroup.add(BoolSetting.Builder().name("thunder-bolt").defaultValue(true).build())
+    private var boltNumber = thunderGroup.add(IntSetting.Builder().name("bolt-number").defaultValue(1).sliderRange(1, 10).visible{thunder.get()}.build())
     private var sound = soundGroup.add(BoolSetting.Builder().name("sound").defaultValue(false).build())
+    private var soundsNumber = soundGroup.add(IntSetting.Builder().name("sounds-number").defaultValue(1).sliderRange(1, 10).visible{sound.get()}.build())
     private var sounds = soundGroup.add(SoundEventListSetting.Builder().name("sounds").visible{sound.get()}.build())
     private var particle = particleGroup.add(BoolSetting.Builder().name("particle").defaultValue(true).build())
+    private var particlesNumber = particleGroup.add(IntSetting.Builder().name("particles-number").defaultValue(1).sliderRange(1, 10).visible{particle.get()}.build())
     private var particles = particleGroup.add(ParticleTypeListSetting.Builder().name("particles").visible{particle.get()}.defaultValue(ParticleTypes.HEART).build())
     private var spawnEffectsEnd = false
 
@@ -44,9 +47,9 @@ class KillEffects : Global, Module(Initializer.Category, "kill-effects", "Shows 
     }
 
     private fun addEffects(X : Double, Y : Double, Z : Double) {
-        if (thunder.get()) USpawn.addEntity(LightningEntity(EntityType.LIGHTNING_BOLT, mc.world), X, Y, Z)
-        if (particle.get()) USpawn.addParticle(particles.get(), X, Y + 1.75, Z)
-        if (sound.get()) USpawn.playSound(sounds.get())
+        if (thunder.get()) for (num in 0..boltNumber.get()) USpawn.addEntity(LightningEntity(EntityType.LIGHTNING_BOLT, mc.world), X, Y, Z)
+        if (particle.get()) for (num in 0..particlesNumber.get()) USpawn.addParticle(particles.get(), X, Y + 1.75, Z)
+        if (sound.get()) for (num in 0..soundsNumber.get()) USpawn.playSound(sounds.get())
         spawnEffectsEnd = false
     }
 }

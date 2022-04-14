@@ -18,5 +18,5 @@ interface Global
     val network : ClientPlayNetworkHandler? get() = minecraft.networkHandler
     val inventory : PlayerInventory? get() = player?.inventory
     val hud : InGameHud get() = minecraft.inGameHud
-    val interaction: ClientPlayerInteractionManager? get() = minecraft.interactionManager
+    val interaction : ClientPlayerInteractionManager? get() = minecraft.interactionManager
 }
