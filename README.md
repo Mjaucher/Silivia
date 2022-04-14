@@ -6,11 +6,14 @@ __Credits:__ https://en.wikipedia.org/wiki/Trollface
 
 ### How to run:
  Download "silivia-kotlin.jar" here: https://github.com/Jackesparragos/Silivia/releases/latest.
+    
  Put this file in your mod folder with __"Needed mods"__.
 
 ### Needed mods:
  Meteor Client - https://meteorclient.com/
+    
  Fabric Language Kotlin - https://www.curseforge.com/minecraft/mc-mods/fabric-language-kotlin
+    
  Fabric Loader - https://fabricmc.net/use/installer/
 
 ### Features:  
