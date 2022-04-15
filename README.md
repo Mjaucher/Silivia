@@ -13,8 +13,6 @@ __Credits:__ https://en.wikipedia.org/wiki/Trollface
  Meteor Client - https://meteorclient.com/
     
  Fabric Language Kotlin - https://www.curseforge.com/minecraft/mc-mods/fabric-language-kotlin
-    
- Fabric Loader - https://fabricmc.net/use/installer/
 
 ### Features:  
  __Auto Kit__ Takes _Kit_ after your death.
