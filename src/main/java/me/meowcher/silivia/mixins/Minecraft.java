@@ -12,12 +12,15 @@ import meteordevelopment.meteorclient.MeteorClient;
 
 @Mixin (value = MinecraftClient.class, priority = Integer.MAX_VALUE) public abstract class Minecraft
 {
-    @Redirect (method = "doItemUse", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/network/ClientPlayerInteractionManager;isBreakingBlock()Z"))
+    @Redirect (method = "doItemUse", at = @At(value = "INVOKE",
+        target = "Lnet/minecraft/client/network/ClientPlayerInteractionManager;isBreakingBlock()Z"))
     public boolean doItemUse(ClientPlayerInteractionManager CPIManager)
     {
         return MeteorClient.EVENT_BUS.post(BreakingBlock.Companion.hook(CPIManager.isBreakingBlock())).getBoo();
     }
-    @Redirect (method = "handleBlockBreaking", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/network/ClientPlayerEntity;isUsingItem()Z"))
+
+    @Redirect (method = "handleBlockBreaking", at = @At(value = "INVOKE",
+        target = "Lnet/minecraft/client/network/ClientPlayerEntity;isUsingItem()Z"))
     public boolean handleBlockBreaking(ClientPlayerEntity CPEntity)
     {
         return MeteorClient.EVENT_BUS.post(UsingItem.Companion.hook(CPEntity.isUsingItem())).getLean();

@@ -11,7 +11,7 @@ __Credits:__ https://en.wikipedia.org/wiki/Trollface
 
 ### Needed mods:
  Meteor Client - https://meteorclient.com/
-    
+
  Fabric Language Kotlin - https://www.curseforge.com/minecraft/mc-mods/fabric-language-kotlin
 
 ### Features:  
@@ -19,7 +19,9 @@ __Credits:__ https://en.wikipedia.org/wiki/Trollface
     
  __Auto Login__ Enters password after logging in to server.
     
- __Changer__ Changes in-game parameters (EXP Bar, Weather, Fov, FPS limit, and more)
+ __Cart Bomb__ Automatically puts _Mine Cart_ with TNT under enemy feet.
+
+ __Changer__ _Changes_ in-game parameters (EXP Bar, Weather, Fov, FPS limit, and more)
     
  __Fake Kick__ Automatic disconnect with _Fake_ reason
     
@@ -29,7 +31,7 @@ __Credits:__ https://en.wikipedia.org/wiki/Trollface
     
  __No Interact__ Disable _Interaction_ with interactive blocks.
     
- __NoSwing__ Removes all hand _Swings_.
+ __No Swing__ Removes all hand _Swings_.
     
  __Prefix__ Custom Meteor Client _Prefix_ with more customizations.
     

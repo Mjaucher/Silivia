@@ -1,8 +1,7 @@
 package me.meowcher.silivia.utils.player
 
 import me.meowcher.silivia.core.Global
-import me.meowcher.silivia.utils.world.UBlock
-import net.minecraft.item.Item
+import net.minecraft.entity.Entity
 import net.minecraft.network.Packet
 import net.minecraft.network.packet.c2s.play.*
 import net.minecraft.util.Hand
@@ -19,9 +18,9 @@ class UInteract
         {
             network?.sendPacket(Packet)
         }
-        fun doSwingHand()
+        fun doSwingHand(Hand : Hand)
         {
-            player?.swingHand(Hand.MAIN_HAND)
+            player?.swingHand(Hand)
         }
         fun doUse()
         {
@@ -35,10 +34,30 @@ class UInteract
         {
             doPacketSend(PlayerActionC2SPacket(PlayerActionC2SPacket.Action.ABORT_DESTROY_BLOCK, destroyPosition, Direction.UP))
         }
-        fun doInteractBlock(Position : BlockPos, Direction : Direction, Hand : Hand)
+        fun doUseItemOnBlock(Position : BlockPos, Direction : Direction, Hand : Hand)
         {
             val result = BlockHitResult(Vec3d.of(Position), Direction, Position, false)
             network?.sendPacket(PlayerInteractBlockC2SPacket(Hand, result))
+            doSwingHand(Hand)
+        }
+        fun doAttack(Entity : Entity, Hand : Hand) {
+            doPacketSend(PlayerInteractEntityC2SPacket.attack(Entity, player!!.isSneaking))
+            doSwingHand(Hand)
+            /*
+            private fun doAttackMineCart()
+            {
+                for (mineCart in world!!.entities)
+                {
+                     if (player!!.distanceTo(mineCart) < attackRange.get())
+                     {
+                          if (mineCart is MinecartEntity)
+                          {
+                                UInteract.doAttack(mineCart, Hand.MAIN_HAND)
+                          }
+                     }
+                 }
+            }
+            */
         }
     }
 }

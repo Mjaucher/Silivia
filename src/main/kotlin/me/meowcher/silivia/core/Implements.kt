@@ -8,13 +8,6 @@ class Implements
 {
     companion object
     {
-        private fun modsInitialize(vararg Features : Module?)
-        {
-            for (modules in Features)
-            {
-                Modules.get().add(modules)
-            }
-        }
         fun modsInitialize()
         {
             modsInitialize(
@@ -24,12 +17,20 @@ class Implements
                 AutoLogin(),
                 MultiTask(),
                 TickShift(),
+                CartBomb(),
                 FakeKick(),
                 NoSwing(),
                 Changer(),
                 AutoKit(),
                 Prefix(),
             )
+        }
+        private fun modsInitialize(vararg Features : Module?)
+        {
+            for (modules in Features)
+            {
+                Modules.get().add(modules)
+            }
         }
     }
 }
