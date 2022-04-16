@@ -1,7 +1,7 @@
 package me.meowcher.silivia.utils.player
 
 import me.meowcher.silivia.core.Global
-import net.minecraft.inventory.Inventory
+import me.meowcher.silivia.utils.misc.UMath
 import net.minecraft.item.Item
 import net.minecraft.item.Items
 import net.minecraft.network.packet.c2s.play.*
@@ -34,12 +34,36 @@ class UInventory
             for (i in 0..slots!!) if (inventory?.getStack(i)?.item?.equals(Item) == true) return i
             return -1
         }
-        fun doSlotMovement(Item : Item, moveSlot : Int)
+        private fun clickSlot(Slot : Int, Key : MouseKey, actionType : SlotActionType)
+        {
+            val key = if (Key == MouseKey.Left) 0 else 1
+            interaction?.clickSlot(0, Slot, key, actionType, player)
+        }
+        fun doDropSlot(Slot : Int)
+        {
+            clickSlot(Slot, MouseKey.Right, SlotActionType.THROW)
+        }
+        fun doDropItem(Item : Item)
+        {
+            clickSlot(getItemSlot(Item, true), MouseKey.Right, SlotActionType.THROW)
+        }
+        fun doSlotMovement(Item : Item, moveTo : Int)
         {
             val oldSlot = getItemSlot(Item, true)
-            interaction?.clickSlot(0, oldSlot, 0, SlotActionType.PICKUP, player)
-            interaction?.clickSlot(0, moveSlot, 0, SlotActionType.PICKUP, player)
-            interaction?.clickSlot(0, oldSlot, 0, SlotActionType.PICKUP, player)
+            var action = 0
+
+            do {
+                action++
+                if (action > 3) break
+                val slot = if (!UMath.isEvenNumber(action)) oldSlot else moveTo
+                clickSlot(slot, MouseKey.Left, SlotActionType.PICKUP)
+            } while (true)
+        }
+
+        enum class MouseKey
+        {
+            Left,
+            Right
         }
     }
 }
