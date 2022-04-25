@@ -1,6 +1,6 @@
 package me.meowcher.silivia.utils.world
 
-import me.meowcher.silivia.core.Global
+import me.meowcher.silivia.core.Melchior
 import net.minecraft.entity.Entity
 import net.minecraft.particle.ParticleEffect
 import net.minecraft.particle.ParticleType
@@ -9,7 +9,7 @@ import net.minecraft.sound.SoundEvent
 
 class USpawn
 {
-    companion object : Global
+    companion object : Melchior
     {
         fun playSound(Sound : List<SoundEvent?>)
         {

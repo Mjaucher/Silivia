@@ -15,6 +15,9 @@ repositories {
     maven {
         url = uri("https://maven.meteordev.org/snapshots")
     }
+    maven {
+        url = uri("https://jitpack.io")
+    }
 
     mavenCentral()
 }
@@ -25,6 +28,10 @@ dependencies {
 
     modImplementation("net.fabricmc:fabric-loader:0.13.3")
     modImplementation("meteordevelopment:meteor-client:0.4.7")
+
+    implementation("com.github.therealbush:eventbus-kotlin:1.0.0")
+
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1")
 
     implementation(kotlin("stdlib", kotlinVersion))
     implementation(kotlin("stdlib-jdk8", kotlinVersion))
@@ -48,3 +55,4 @@ tasks {
         kotlinOptions.jvmTarget = "17"
     }
 }
+

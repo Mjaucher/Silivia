@@ -1,6 +1,6 @@
 package me.meowcher.silivia.utils.player
 
-import me.meowcher.silivia.core.Global
+import me.meowcher.silivia.core.Melchior
 import me.meowcher.silivia.utils.misc.UMath
 import net.minecraft.item.Item
 import net.minecraft.item.Items
@@ -9,7 +9,7 @@ import net.minecraft.screen.slot.SlotActionType
 
 class UInventory
 {
-    companion object : Global
+    companion object : Melchior
     {
         fun doUpdateSlot(slotNumber : Int)
         {

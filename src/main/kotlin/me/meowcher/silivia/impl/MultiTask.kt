@@ -1,22 +1,22 @@
 package me.meowcher.silivia.impl
 
-import me.meowcher.silivia.core.Global
-import me.meowcher.silivia.core.Initializer
-import me.meowcher.silivia.events.BreakingBlock
-import me.meowcher.silivia.events.UsingItem
+import me.meowcher.silivia.core.Casper
+import me.meowcher.silivia.core.Melchior
+import me.meowcher.silivia.events.DoItemUseEvent
+import me.meowcher.silivia.events.HandleBreakingEvent
 import meteordevelopment.meteorclient.systems.modules.Module
 import meteordevelopment.orbit.EventHandler
 
-class MultiTask : Global, Module(Initializer.Category, "multi-task", "Allows you to eat while breaking a block.")
+class MultiTask : Melchior, Module(Casper.Reference.category, "multi-task", "Allows you to eat while breaking a block.")
 {
-    private var yes = false // deception
-
-    @EventHandler private fun onBreakingBlockEvent(Event : BreakingBlock)
+    @EventHandler private fun onDoItemUseEvent(Event : DoItemUseEvent)
     {
-        Event.boo = yes
+        Event.hook = false
     }
-    @EventHandler private fun onUsingItemEvent(Event : UsingItem)
+
+    @EventHandler
+    private fun onHandleBreakingEvent(Event : HandleBreakingEvent)
     {
-        Event.lean = yes
+        Event.hook = false //yes usu itme!!
     }
 }

@@ -1,10 +1,10 @@
 package me.meowcher.silivia.utils.world
 
-import me.meowcher.silivia.core.Global
+import me.meowcher.silivia.core.Melchior
 
 class UAmbience
 {
-    companion object : Global
+    companion object : Melchior
     {
         fun getTime() : Long
         {

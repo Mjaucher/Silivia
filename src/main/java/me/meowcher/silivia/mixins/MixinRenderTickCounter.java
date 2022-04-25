@@ -8,10 +8,12 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(value = RenderTickCounter.class, priority = Integer.MAX_VALUE) public abstract class RenderTick
+@Mixin ({RenderTickCounter.class}) public abstract class MixinRenderTickCounter
 {
     @Shadow public float lastFrameDuration;
-    @Inject(method = "beginRenderTick", at = @At(value = "FIELD", target = "Lnet/minecraft/client/render/RenderTickCounter;prevTimeMillis:J"))
+
+    @Inject (method = "beginRenderTick", at = @At (value = "FIELD", target =
+        "Lnet/minecraft/client/render/RenderTickCounter;prevTimeMillis:J"))
     public void beginRenderTick(long timeMillis, CallbackInfoReturnable<Integer> CIReturnable)
     {
         lastFrameDuration *= URender.Companion.getTimer();

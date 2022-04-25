@@ -1,7 +1,7 @@
 package me.meowcher.silivia.impl
 
-import me.meowcher.silivia.core.Global
-import me.meowcher.silivia.core.Initializer
+import me.meowcher.silivia.core.Melchior
+import me.meowcher.silivia.core.Casper
 import meteordevelopment.meteorclient.events.world.TickEvent.Post
 import meteordevelopment.meteorclient.settings.BoolSetting
 import meteordevelopment.meteorclient.settings.DoubleSetting
@@ -10,7 +10,7 @@ import meteordevelopment.meteorclient.settings.IntSetting
 import meteordevelopment.meteorclient.systems.modules.Module
 import meteordevelopment.orbit.EventHandler
 
-class Changer : Global, Module(Initializer.Category, "changer", "Changes in-game parameters (EXP Bar, Weather, Fov, FPS limit, and more).")
+class Changer : Melchior, Module(Casper.Reference.category, "changer", "Changes in-game parameters (EXP Bar, Weather, Fov, FPS limit, and more).")
 {
     private var mcOptionsGroup = settings.createGroup("Better Minecraft Options")
     private var fpsMax = mcOptionsGroup.add(IntSetting.Builder().name("fps-max").defaultValue(120).sliderRange(0, 180).build())

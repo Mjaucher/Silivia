@@ -1,7 +1,7 @@
 package me.meowcher.silivia.impl
 
-import me.meowcher.silivia.core.Global
-import me.meowcher.silivia.core.Initializer
+import me.meowcher.silivia.core.Melchior
+import me.meowcher.silivia.core.Casper
 import me.meowcher.silivia.utils.world.USpawn
 import meteordevelopment.meteorclient.events.world.TickEvent.Post
 import meteordevelopment.meteorclient.settings.*
@@ -12,7 +12,7 @@ import net.minecraft.entity.LightningEntity
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.particle.ParticleTypes
 
-class KillEffects : Global, Module(Initializer.Category, "kill-effects", "Shows Effects after Death.")
+class KillEffects : Melchior, Module(Casper.Reference.category, "kill-effects", "Shows Effects after Death.")
 {
     private var group = settings.defaultGroup
     private var thunderGroup = settings.createGroup("Thunder Settings")

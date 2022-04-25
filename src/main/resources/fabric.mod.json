@@ -1,20 +1,20 @@
 {
   "schemaVersion": 1,
   "id": "silivia",
-  "version": "V1",
+  "version": "v1",
   "name": "Silivia",
   "description": "Trolling!",
   "authors": [
     "мяучер"
   ],
   "contact": {
-    "repo": "https://github.com/Jackesparragos/Silivia"
+    "sources": "https://github.com/Jackesparragos/Silivia"
   },
   "icon": "assets/silivia/icon.png",
   "environment": "client",
   "entrypoints": {
     "meteor": [
-      "me.meowcher.silivia.core.Initializer"
+      "me.meowcher.silivia.core.Casper"
     ]
   },
   "mixins": [

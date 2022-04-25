@@ -1,6 +1,6 @@
 package me.meowcher.silivia.utils.player
 
-import me.meowcher.silivia.core.Global
+import me.meowcher.silivia.core.Melchior
 import net.minecraft.entity.Entity
 import net.minecraft.network.Packet
 import net.minecraft.network.packet.c2s.play.*
@@ -12,35 +12,36 @@ import net.minecraft.util.math.Vec3d
 
 class UInteract
 {
-    companion object : Global
+    companion object : Melchior
     {
         fun doPacketSend(Packet : Packet<*>)
         {
             network?.sendPacket(Packet)
         }
-        fun doSwingHand(Hand : Hand)
+        private fun doSwingHand(Hand : Hand)
         {
             player?.swingHand(Hand)
         }
-        fun doUse()
+        fun doItemUse()
         {
             doPacketSend(PlayerInteractItemC2SPacket(Hand.MAIN_HAND))
         }
-        private fun doStartDestroyBlock(destroyPosition : BlockPos?)
+        fun doDestroyBlock(destroyPosition : BlockPos, Action : DestroyBlock)
         {
-            doPacketSend(PlayerActionC2SPacket(PlayerActionC2SPacket.Action.START_DESTROY_BLOCK, destroyPosition, Direction.UP))
-        }
-        fun doAbortDestroyBlock(destroyPosition : BlockPos)
-        {
-            doPacketSend(PlayerActionC2SPacket(PlayerActionC2SPacket.Action.ABORT_DESTROY_BLOCK, destroyPosition, Direction.UP))
+            val action =
+                if (Action == DestroyBlock.Abort) PlayerActionC2SPacket.Action.ABORT_DESTROY_BLOCK
+                else PlayerActionC2SPacket.Action.START_DESTROY_BLOCK
+
+            doPacketSend(PlayerActionC2SPacket(action, destroyPosition, Direction.UP))
         }
         fun doUseItemOnBlock(Position : BlockPos, Direction : Direction, Hand : Hand)
         {
             val result = BlockHitResult(Vec3d.of(Position), Direction, Position, false)
-            network?.sendPacket(PlayerInteractBlockC2SPacket(Hand, result))
+            doPacketSend(PlayerInteractBlockC2SPacket(Hand, result))
             doSwingHand(Hand)
         }
-        fun doAttack(Entity : Entity, Hand : Hand) {
+        fun doAttack(Entity : Entity, Hand : Hand)
+        {
             doPacketSend(PlayerInteractEntityC2SPacket.attack(Entity, player!!.isSneaking))
             doSwingHand(Hand)
             /*
@@ -58,6 +59,12 @@ class UInteract
                  }
             }
             */
+        }
+
+        enum class DestroyBlock
+        {
+            Start,
+            Abort
         }
     }
 }

@@ -1,7 +1,7 @@
 package me.meowcher.silivia.impl
 
-import me.meowcher.silivia.core.Global
-import me.meowcher.silivia.core.Initializer
+import me.meowcher.silivia.core.Melchior
+import me.meowcher.silivia.core.Casper
 import me.meowcher.silivia.utils.world.UAmbience
 import net.minecraft.network.packet.s2c.play.WorldTimeUpdateS2CPacket
 import meteordevelopment.meteorclient.events.packets.PacketEvent.Receive
@@ -10,7 +10,7 @@ import meteordevelopment.meteorclient.systems.modules.Module
 import meteordevelopment.meteorclient.settings.*
 import meteordevelopment.orbit.EventHandler
 
-class NightMode : Global, Module(Initializer.Category, "night-mode", "Allows you to switch Game Time.")
+class NightMode : Melchior, Module(Casper.Reference.category, "night-mode", "Allows you to switch Game Time.")
 {
     private val group = settings.defaultGroup
     private var status = group.add(EnumSetting.Builder().name("status").defaultValue(StatusEnum.Static).build())

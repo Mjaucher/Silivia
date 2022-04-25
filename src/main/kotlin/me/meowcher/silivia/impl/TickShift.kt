@@ -1,7 +1,7 @@
 package me.meowcher.silivia.impl
 
-import me.meowcher.silivia.core.Global
-import me.meowcher.silivia.core.Initializer
+import me.meowcher.silivia.core.Melchior
+import me.meowcher.silivia.core.Casper
 import me.meowcher.silivia.utils.world.URender
 import meteordevelopment.meteorclient.events.world.TickEvent.Post
 import meteordevelopment.meteorclient.settings.BoolSetting
@@ -11,7 +11,7 @@ import meteordevelopment.meteorclient.systems.modules.Module
 import meteordevelopment.meteorclient.utils.player.ChatUtils
 import meteordevelopment.orbit.EventHandler
 
-class TickShift : Global, Module(Initializer.Category, "tick-shift", "timer = 2.0")
+class TickShift : Melchior, Module(Casper.Reference.category, "tick-shift", "timer = 2.0")
 {
     private val group = settings.defaultGroup
     private val timerValue = group.add(DoubleSetting.Builder().name("timer-value").defaultValue(5.0).min(1.0).sliderMin(1.0).sliderMax(25.0).build())
