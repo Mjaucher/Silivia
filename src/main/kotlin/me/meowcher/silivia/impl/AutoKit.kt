@@ -9,16 +9,23 @@ import meteordevelopment.meteorclient.settings.*
 import meteordevelopment.orbit.EventHandler
 import net.minecraft.network.packet.s2c.play.PlayerRespawnS2CPacket
 
-class AutoKit : Melchior, Module(Casper.Reference.category, "auto-kit", "Takes Kit after your death.")
-{
-    private val group = settings.defaultGroup
-    private val kitName = group.add(StringSetting.Builder().name("kit-name").defaultValue("").build())
+class AutoKit : Module(
+    Casper.Reference.category,
+    "auto-kit",
+    "Takes Kit after your death."
+), Melchior {
 
-    @EventHandler private fun onPacketReceiveEvent(Event : Receive)
-    {
-        if (Event.packet is PlayerRespawnS2CPacket && player!!.health == 0F)
-        {
+    private val group = settings.defaultGroup
+
+    private val kitName = group.add(
+        StringSetting.Builder().name("kit-name").defaultValue("").build()
+    )
+
+    @EventHandler
+    private fun onPacketReceiveEvent(
+        Event : Receive
+    ) {
+        if (Event.packet is PlayerRespawnS2CPacket && player.health == 0F)
             UMessages.doSend("/kit " + kitName.get())
-        }
     }
 }

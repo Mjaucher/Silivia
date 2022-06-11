@@ -31,16 +31,16 @@ class Casper : Melchior, MeteorAddon()
     override fun onRegisterCategories()
     {
         Modules.registerCategory(Reference.category)
-        logger?.info("Categories are registered!")
+        logger.info("Categories are registered!")
     }
 
     override fun onInitialize()
     {
-        logger?.info("Start Initializing.")
+        logger.info("Start Initializing.")
 
         Balthasar.Init.eventBusInitialize()
         Balthasar.Init.modsInitialize()
 
-        logger?.info("Initializing end.")
+        logger.info("Initializing end.")
     }
 }

@@ -10,8 +10,17 @@ import meteordevelopment.meteorclient.systems.modules.Module
 import meteordevelopment.meteorclient.settings.*
 import meteordevelopment.orbit.EventHandler
 
-class NightMode : Melchior, Module(Casper.Reference.category, "night-mode", "Allows you to switch Game Time.")
-{
+enum class StatusEnum {
+    Changing,
+    Static
+}
+
+class NightMode : Module(
+    Casper.Reference.category,
+    "night-mode",
+    "Allows you to switch Game Time."
+), Melchior {
+
     private val group = settings.defaultGroup
     private var status = group.add(EnumSetting.Builder().name("status").defaultValue(StatusEnum.Static).build())
     private var changeRate = group.add(IntSetting.Builder().name("change-rate").defaultValue(15).sliderRange(0, 99).visible { status.get() == StatusEnum.Changing } .build())
@@ -21,43 +30,33 @@ class NightMode : Melchior, Module(Casper.Reference.category, "night-mode", "All
     private var oldTime = 0L
     private var timeOfDay = 0
 
-    override fun onActivate()
-    {
+    override fun onActivate() {
         oldTime = UAmbience.getTime()
     }
 
-    override fun onDeactivate()
-    {
-        UAmbience.setTime(oldTime)
-    }
+    override fun onDeactivate() = UAmbience.setTime(oldTime)
 
-    @EventHandler private fun onPacketReceiveEvent(Event : Receive)
-    {
+    @EventHandler
+    private fun onPacketReceiveEvent(
+        Event : Receive
+    ) {
         if (Event.packet is WorldTimeUpdateS2CPacket)
-        {
             Event.isCancelled = true
-        }
     }
 
-    @EventHandler private fun onTickPostEvent(Event : Post)
-    {
-        timeOfDay += if (moonAnimation.get()) 24000 else 0
+    @EventHandler
+    private fun onTickPostEvent(
+        Event : Post
+    ) {
+        timeOfDay +=
+            if (moonAnimation.get()) 24000
+            else 0
 
         if (status.get() == StatusEnum.Static)
-        {
             timeOfDay = 1000 * time.get()
-            UAmbience.setTime(timeOfDay)
-        }
         else
-        {
             timeOfDay += 10 * changeRate.get()
-            UAmbience.setTime(timeOfDay)
-        }
-    }
 
-    enum class StatusEnum
-    {
-        Changing,
-        Static
+        UAmbience.setTime(timeOfDay)
     }
 }

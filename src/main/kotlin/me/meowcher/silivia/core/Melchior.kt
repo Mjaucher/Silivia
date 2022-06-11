@@ -15,18 +15,13 @@ import org.apache.logging.log4j.Logger
 interface Melchior
 {
     val minecraft : MinecraftClient get() = MinecraftClient.getInstance()
-    val player : ClientPlayerEntity? get() = minecraft.player
-    val world : ClientWorld? get() = minecraft.world
+    val player : ClientPlayerEntity get() = minecraft.player!!
+    val world : ClientWorld get() = minecraft.world!!
     val options: GameOptions get() = minecraft.options
-    val network : ClientPlayNetworkHandler? get() = minecraft.networkHandler
-    val inventory : PlayerInventory? get() = player?.inventory
+    val network : ClientPlayNetworkHandler get() = minecraft.networkHandler!!
+    val inventory : PlayerInventory get() = player?.inventory!!
     val hud : InGameHud get() = minecraft.inGameHud
-    val chatHud : ChatHud? get() = hud.chatHud
-    val interaction : ClientPlayerInteractionManager? get() = minecraft.interactionManager
-    val logger : Logger? get() = LogManager.getLogger(Casper.Reference.modID)
-
-    fun isNull() : Boolean
-    {
-        return world == null || player == null
-    }
+    val chatHud : ChatHud get() = hud.chatHud
+    val interaction : ClientPlayerInteractionManager get() = minecraft.interactionManager!!
+    val logger : Logger get() = LogManager.getLogger(Casper.Reference.modID)
 }

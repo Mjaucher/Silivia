@@ -17,7 +17,7 @@ __Credits:__ https://en.wikipedia.org/wiki/Trollface
 ### Features:  
  __Auto Kit__ Takes _Kit_ after your death.
     
- __Auto Login__ Enters password after logging in to server.
+ __Auto Login__ Automatic registration and _Login_ to the server.
     
  __Cart Bomb__ Automatically puts _Mine Cart_ with TNT under enemy feet.
 

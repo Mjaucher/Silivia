@@ -16,15 +16,15 @@ class UInteract
     {
         fun doPacketSend(Packet : Packet<*>)
         {
-            network?.sendPacket(Packet)
+            network.sendPacket(Packet)
         }
         private fun doSwingHand(Hand : Hand)
         {
-            player?.swingHand(Hand)
+            player.swingHand(Hand)
         }
         fun doItemUse()
         {
-            doPacketSend(PlayerInteractItemC2SPacket(Hand.MAIN_HAND))
+            doPacketSend(PlayerInteractItemC2SPacket(Hand.MAIN_HAND, 1))
         }
         fun doDestroyBlock(destroyPosition : BlockPos, Action : DestroyBlock)
         {
@@ -37,12 +37,12 @@ class UInteract
         fun doUseItemOnBlock(Position : BlockPos, Direction : Direction, Hand : Hand)
         {
             val result = BlockHitResult(Vec3d.of(Position), Direction, Position, false)
-            doPacketSend(PlayerInteractBlockC2SPacket(Hand, result))
+            doPacketSend(PlayerInteractBlockC2SPacket(Hand, result, 1))
             doSwingHand(Hand)
         }
         fun doAttack(Entity : Entity, Hand : Hand)
         {
-            doPacketSend(PlayerInteractEntityC2SPacket.attack(Entity, player!!.isSneaking))
+            doPacketSend(PlayerInteractEntityC2SPacket.attack(Entity, player.isSneaking))
             doSwingHand(Hand)
             /*
             private fun doAttackMineCart()

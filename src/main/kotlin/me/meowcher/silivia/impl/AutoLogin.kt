@@ -3,29 +3,50 @@ package me.meowcher.silivia.impl
 import me.meowcher.silivia.core.Melchior
 import me.meowcher.silivia.core.Casper
 import me.meowcher.silivia.utils.chat.UMessages
-import meteordevelopment.meteorclient.events.world.TickEvent.Post
+import me.meowcher.silivia.utils.misc.UVariables
+import meteordevelopment.meteorclient.events.packets.PacketEvent
 import meteordevelopment.meteorclient.settings.*
 import meteordevelopment.meteorclient.systems.modules.Module
 import meteordevelopment.orbit.EventHandler
+import net.minecraft.network.packet.s2c.play.GameJoinS2CPacket
 
-class AutoLogin : Melchior, Module(Casper.Reference.category, "auto-login", "Enters password after logging in to server.")
-{
+class AutoLogin : Module(
+    Casper.Reference.category,
+    "auto-login",
+    "Automatic registration and login to the server."
+), Melchior {
+
     private val group = settings.defaultGroup
-    private val password = group.add(StringSetting.Builder().name("Password").defaultValue("").build())
 
-    private var num = 0
+    private val password =
+        group.add(StringSetting.Builder().name("password").defaultValue("1234567890").build())
+    private var registration =
+        group.add(BoolSetting.Builder().name("registration").defaultValue(false).build())
 
-    override fun onActivate()
-    {
-        num = 1
+    private var onActivate = false
+
+    override fun onActivate() {
+
+        onActivate = true
     }
 
-    @EventHandler private fun onTickPostEvent(Event : Post)
-    {
-        if (world != null && num == 1)
-        {
-            UMessages.doSend("/login " + password.get())
-            num = 0
+    @EventHandler
+    private fun onPacketSendEvent(
+        Event : PacketEvent.Send
+    ) {
+        if (Event.packet is GameJoinS2CPacket || onActivate) {
+
+            IntRange(if (registration.get()) 1 else 2, 2).forEach {
+
+                val pass = UVariables.repeat(password.get(), it, true)
+
+                UMessages.doSend("/${
+                    if (it == 1) "register "
+                    else "login "}$pass"
+                )
+            }
+
+            onActivate = false
         }
     }
 }

@@ -16,7 +16,7 @@ import meteordevelopment.orbit.EventHandler
 import net.minecraft.block.Block
 import net.minecraft.item.Item
 import net.minecraft.item.Items
-import net.minecraft.text.LiteralText
+import net.minecraft.text.Text
 import net.minecraft.util.Hand
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
@@ -84,8 +84,8 @@ class CartBomb : Melchior, Module(Casper.Reference.category, "cart-bomb", "Autom
 
         val notSurrounded = onlySurrounded.get() && !UEntity.isSurrounded(target)
         val isBurrowed = !UBlock.isAir(targetPos) && !isRailBlock
-        val antiSelf = antiSelfDMG.get() && (targetPos == player!!.blockPos) && !player!!.isCreative && !player!!.isSpectator
-        val lowHPStop = lowHealthStop.get() && player!!.health <= lowHealthCount.get().toFloat()
+        val antiSelf = antiSelfDMG.get() && (targetPos == player.blockPos) && !player.isCreative && !player.isSpectator
+        val lowHPStop = lowHealthStop.get() && player.health <= lowHealthCount.get().toFloat()
 
         if (notSurrounded) doSendDebug("Target is not surrounded!")
         if (isBurrowed) doSendDebug("Target is burrowed, placement is impossible!")
@@ -135,10 +135,12 @@ class CartBomb : Melchior, Module(Casper.Reference.category, "cart-bomb", "Autom
             Item === Items.ACTIVATOR_RAIL || Item === Items.ACTIVATOR_RAIL
     }
 
-    private fun doSendDebug(Text : String)
+    private fun doSendDebug(text : String)
     {
-        if (debugs.get()) UMessages.doFakeSend(LiteralText(Text))
-        else println(Text)
+        if (debugs.get())
+            UMessages.doFakeSend(Text.literal(text))
+        else
+            println(text)
     }
 
     private fun doSetDefault()

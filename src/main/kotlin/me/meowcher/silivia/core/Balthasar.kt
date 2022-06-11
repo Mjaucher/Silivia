@@ -1,16 +1,9 @@
 package me.meowcher.silivia.core
 
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import me.bush.eventbuskotlin.Config
-import me.bush.eventbuskotlin.EventBus
 import me.meowcher.silivia.impl.*
 import meteordevelopment.meteorclient.MeteorClient
 import meteordevelopment.meteorclient.systems.modules.Module
 import meteordevelopment.meteorclient.systems.modules.Modules
-import org.apache.logging.log4j.Level
-import org.apache.logging.log4j.LogManager
-import org.apache.logging.log4j.core.config.Configurator
 import java.lang.invoke.MethodHandles
 import java.lang.reflect.Method
 
@@ -43,7 +36,7 @@ class Balthasar
                 Prefix()
             )
 
-            logger?.info("Registration of modules is completed!")
+            logger.info("Registration of modules is completed!")
         }
 
         fun eventBusInitialize()
@@ -53,7 +46,7 @@ class Balthasar
                 lookupInMethod.invoke(null, klass, MethodHandles.lookup()) as MethodHandles.Lookup
             }
 
-            logger?.info("Event Bus registration is completed!")
+            logger.info("Event Bus registration is completed!")
         }
     }
 }
