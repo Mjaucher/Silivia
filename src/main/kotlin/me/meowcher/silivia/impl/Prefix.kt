@@ -18,7 +18,7 @@ enum class TextStyle {
     BOLD
 }
 
-class Prefix : Module(
+object Prefix : Module(
     Casper.Reference.category,
     "prefix",
     "Custom Meteor Client Prefix with more customizations."

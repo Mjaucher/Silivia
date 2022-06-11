@@ -21,7 +21,7 @@ import net.minecraft.util.Hand
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
 
-class CartBomb : Melchior, Module(Casper.Reference.category, "cart-bomb", "Automatically puts Mine Cart with TNT under enemy feet.")
+object CartBomb : Melchior, Module(Casper.Reference.category, "cart-bomb", "Automatically puts Mine Cart with TNT under enemy feet.")
 {
     private val group = settings.defaultGroup
     private var targetRange = group.add(IntSetting.Builder().name("target-range").defaultValue(4).sliderRange(1, 6).build())

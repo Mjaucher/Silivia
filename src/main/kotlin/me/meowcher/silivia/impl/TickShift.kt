@@ -11,10 +11,16 @@ import meteordevelopment.meteorclient.systems.modules.Module
 import meteordevelopment.meteorclient.utils.player.ChatUtils
 import meteordevelopment.orbit.EventHandler
 
-class TickShift : Melchior, Module(Casper.Reference.category, "tick-shift", "timer = 2.0")
-{
+object TickShift : Module(
+    Casper.Reference.category,
+    "tick-shift",
+    "timer = 2.0"
+), Melchior {
+
     private val group = settings.defaultGroup
-    private val timerValue = group.add(DoubleSetting.Builder().name("timer-value").defaultValue(5.0).min(1.0).sliderMin(1.0).sliderMax(25.0).build())
+
+    private val timerValue =
+        group.add(DoubleSetting.Builder().name("timer-value").defaultValue(5.0).min(1.0).sliderMin(1.0).sliderMax(25.0).build())
     private var pauseTicks = group.add(IntSetting.Builder().name("pause-ticks").defaultValue(25).sliderRange(0, 100).build())
     private var timerTicks = group.add(IntSetting.Builder().name("timer-ticks").defaultValue(15).sliderRange(0, 100).build())
     private var autoToggle = group.add(BoolSetting.Builder().name("auto-toggle").defaultValue(true).build())
@@ -24,53 +30,57 @@ class TickShift : Melchior, Module(Casper.Reference.category, "tick-shift", "tim
     private var passivePauseTicks = 0
     private var activePauseTicks = 0
 
-    private fun default()
-    {
-        tickShiftDone = false
-        notificationDeath = false
-        passivePauseTicks = 0
-        activePauseTicks = timerTicks.get()
-        URender.setTimer(1.0)
-    }
+    override fun onActivate() = default()
+    override fun onDeactivate() = default()
 
-    override fun onActivate()
-    {
-        default()
-    }
+    @EventHandler
+    private fun onTickPostEvent(
+        event : Post
+    ) {
+        val whenPlayerMove = options.forwardKey.isPressed
+            || options.leftKey.isPressed
+            || options.rightKey.isPressed
+            || options.backKey.isPressed
 
-    override fun onDeactivate()
-    {
-        default()
-    }
+        if (!tickShiftDone && !whenPlayerMove)
+            passivePauseTicks++
 
-    @EventHandler private fun onTickPostEvent(Event : Post)
-    {
-        val whenPlayerMove = options.forwardKey.isPressed || options.leftKey.isPressed
-            || options.rightKey.isPressed || options.backKey.isPressed
+        if (whenPlayerMove)
+            passivePauseTicks = 0
 
-        if (!tickShiftDone && !whenPlayerMove) passivePauseTicks++
-        if (whenPlayerMove) passivePauseTicks = 0
+        if (pauseTicks.get() <= passivePauseTicks || tickShiftDone) {
 
-        if (pauseTicks.get() <= passivePauseTicks || tickShiftDone)
-        {
             tickShiftDone = true
-            if (!notificationDeath) notification()
-            if (activePauseTicks >= 0 && whenPlayerMove)
-            {
-                URender.setTimer(timerValue.get())
+
+            if (!notificationDeath)
+                notification()
+
+            if (activePauseTicks >= 0 && whenPlayerMove) {
+                URender.tickCounter = timerValue.get()
                 activePauseTicks--
             }
         }
 
-        if (tickShiftDone && activePauseTicks <= 0)
-        {
-            if (autoToggle.get()) toggle()
+        if (tickShiftDone && activePauseTicks <= 0) {
+
             default()
+
+            if (autoToggle.get())
+                toggle()
         }
     }
 
-    private fun notification()
-    {
+    private fun default() {
+
+        tickShiftDone = false
+        notificationDeath = false
+        passivePauseTicks = 0
+        activePauseTicks = timerTicks.get()
+        URender.tickCounter = 1.0
+    }
+
+    private fun notification() {
+
         ChatUtils.info("> Tick Shift is ready!")
         notificationDeath = true
     }

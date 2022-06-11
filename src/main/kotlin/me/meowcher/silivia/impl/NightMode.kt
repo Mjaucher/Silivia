@@ -15,7 +15,7 @@ enum class StatusEnum {
     Static
 }
 
-class NightMode : Module(
+object NightMode : Module(
     Casper.Reference.category,
     "night-mode",
     "Allows you to switch Game Time."

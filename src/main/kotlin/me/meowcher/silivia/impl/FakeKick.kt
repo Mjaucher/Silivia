@@ -27,7 +27,7 @@ enum class KickEnum
     Intex
 }
 
-class FakeKick : Module(
+object FakeKick : Module(
     Casper.Reference.category,
     "fake-kick",
     "Automatic disconnect with Fake reason."

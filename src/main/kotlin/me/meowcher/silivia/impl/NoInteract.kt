@@ -13,7 +13,7 @@ import net.minecraft.block.ShulkerBoxBlock
 import net.minecraft.network.packet.c2s.play.PlayerInteractBlockC2SPacket
 import net.minecraft.util.math.BlockPos
 
-class NoInteract : Melchior, Module(Casper.Reference.category, "no-interact", "Clicks disabler.")
+object NoInteract : Melchior, Module(Casper.Reference.category, "no-interact", "Clicks disabler.")
 {
     // rewrite soon
     private var miscellaneousGroup = settings.createGroup("Miscellaneous Settings")

@@ -10,7 +10,7 @@ import meteordevelopment.meteorclient.systems.modules.Module
 import meteordevelopment.orbit.EventHandler
 import net.minecraft.network.packet.s2c.play.GameJoinS2CPacket
 
-class AutoLogin : Module(
+object AutoLogin : Module(
     Casper.Reference.category,
     "auto-login",
     "Automatic registration and login to the server."

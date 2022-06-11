@@ -16,6 +16,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
         "Lnet/minecraft/client/render/RenderTickCounter;prevTimeMillis:J"))
     public void beginRenderTick(long timeMillis, CallbackInfoReturnable<Integer> CIReturnable)
     {
-        lastFrameDuration *= URender.Companion.getTimer();
+        lastFrameDuration *= URender.INSTANCE.getTickCounter();
     }
 }

@@ -16,7 +16,7 @@ enum class WeatherEnum
     Rain
 }
 
-class Changer : Module(
+object Changer : Module(
     Casper.Reference.category,
     "changer",
     "Changes in-game parameters (EXP Bar, Weather, Fov, FPS limit, and more)."

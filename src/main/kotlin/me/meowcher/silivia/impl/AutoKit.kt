@@ -9,7 +9,7 @@ import meteordevelopment.meteorclient.settings.*
 import meteordevelopment.orbit.EventHandler
 import net.minecraft.network.packet.s2c.play.PlayerRespawnS2CPacket
 
-class AutoKit : Module(
+object AutoKit : Module(
     Casper.Reference.category,
     "auto-kit",
     "Takes Kit after your death."

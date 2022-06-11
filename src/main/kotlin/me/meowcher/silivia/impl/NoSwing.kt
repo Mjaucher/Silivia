@@ -10,7 +10,7 @@ import meteordevelopment.orbit.EventHandler
 import net.minecraft.network.packet.c2s.play.*
 import net.minecraft.network.packet.s2c.play.EntityAnimationS2CPacket
 
-class NoSwing : Module(
+object NoSwing : Module(
     Casper.Reference.category,
     "no-swing",
     "Removes all hand Swings."

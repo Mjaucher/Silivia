@@ -1,21 +1,21 @@
 package me.meowcher.silivia.utils.misc
 
-class UVariables
-{
-    companion object
-    {
-        fun repeat(string : String, repeatCount : Int, withSpace : Boolean) : String
-        {
-            var result = ""
+object UVariables {
 
-            for (repeats in 1..repeatCount)
-            {
-                result += string +
-                    if (repeats != repeatCount && withSpace) " "
-                    else ""
-            }
+    fun repeat(
+        string : String,
+        repeatCount : Int,
+        withSpace : Boolean
+    ) : String {
 
-            return result
+        var result = ""
+
+        IntRange(1, repeatCount).forEach {
+            result += string +
+                if (it != repeatCount && withSpace) " "
+                else ""
         }
+
+        return result
     }
 }

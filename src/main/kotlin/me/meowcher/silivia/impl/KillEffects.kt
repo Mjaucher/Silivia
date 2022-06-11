@@ -12,7 +12,7 @@ import net.minecraft.entity.LightningEntity
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.particle.ParticleTypes
 
-class KillEffects : Module(
+object KillEffects : Module(
     Casper.Reference.category,
     "kill-effects",
     "Shows Effects after Death."

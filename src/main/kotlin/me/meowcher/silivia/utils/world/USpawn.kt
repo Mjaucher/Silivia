@@ -2,38 +2,39 @@ package me.meowcher.silivia.utils.world
 
 import me.meowcher.silivia.core.Melchior
 import net.minecraft.entity.Entity
-import net.minecraft.particle.ParticleEffect
-import net.minecraft.particle.ParticleType
-import net.minecraft.sound.SoundCategory
-import net.minecraft.sound.SoundEvent
+import net.minecraft.particle.*
+import net.minecraft.sound.*
 
-class USpawn
+object USpawn : Melchior
 {
-    companion object : Melchior
-    {
-        fun playSound(Sound : List<SoundEvent?>)
-        {
-            for (Event in Sound)
-            {
-                player?.playSound(Event, SoundCategory.MASTER, 1f, 1f)
-            }
+    private fun playSound(sound : SoundEvent) =
+        player.playSound(sound, SoundCategory.MASTER, 1F, 1F)
+
+    fun playSound(sounds : List<SoundEvent>) =
+        sounds.forEach {
+            playSound(it)
         }
-        fun playSound(Sound : SoundEvent?)
-        {
-            player?.playSound(Sound, SoundCategory.MASTER, 1f, 1f)
-        }
-        fun addEntity(Entity : Entity, SpawnPosX : Double, SpawnPosY : Double, SpawnPosZ : Double)
-        {
-            Entity.updatePosition(SpawnPosX, SpawnPosY, SpawnPosZ)
-            world?.addEntity(Entity.id, Entity)
-        }
-        fun addParticle(particleType : MutableList<ParticleType<*>>, posX : Double, posY : Double, posZ : Double)
-        {
-            for (ParticleType in particleType)
-            {
-                val type = ParticleType as ParticleEffect
-                world?.addParticle(type, posX, posY, posZ, 0.0, 0.0, 0.0)
-            }
-        }
+
+    fun addEntity(
+        entity : Entity,
+        posX : Double,
+        posY : Double,
+        posZ : Double
+    ) {
+        entity.updatePosition(posX, posY, posZ)
+        world.addEntity(
+            entity.id,
+            entity
+        )
+    }
+
+    fun addParticle(
+        particleType : MutableList<ParticleType<*>>,
+        posX : Double,
+        posY : Double,
+        posZ : Double
+    ) = particleType.forEach {
+        val type = it as ParticleEffect
+        world.addParticle(type, posX, posY, posZ, 0.0, 0.0, 0.0)
     }
 }

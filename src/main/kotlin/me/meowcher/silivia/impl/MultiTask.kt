@@ -7,7 +7,7 @@ import me.meowcher.silivia.events.HandleBreakingEvent
 import meteordevelopment.meteorclient.systems.modules.Module
 import meteordevelopment.orbit.EventHandler
 
-class MultiTask : Melchior, Module(Casper.Reference.category, "multi-task", "Allows you to eat while breaking a block.")
+object MultiTask : Melchior, Module(Casper.Reference.category, "multi-task", "Allows you to eat while breaking a block.")
 {
     @EventHandler private fun onDoItemUseEvent(Event : DoItemUseEvent)
     {

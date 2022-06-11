@@ -3,31 +3,42 @@ package me.meowcher.silivia.utils.world
 import me.meowcher.silivia.core.Melchior
 import meteordevelopment.meteorclient.systems.friends.Friends
 import net.minecraft.entity.player.PlayerEntity
+import net.minecraft.util.math.Vec2f
 
-class UEntity
+object UEntity : Melchior
 {
-    companion object : Melchior
-    {
-        fun getTarget(Range : Int, ignoreFriends : Boolean) : PlayerEntity?
-        {
-            for (target in world!!.entities)
-            {
-                if (player!!.distanceTo(target) <= Range && target is PlayerEntity && target != player)
-                {
-                    if (Friends.get().isFriend(target) != ignoreFriends)
-                    {
-                        return target
-                    }
-                }
-            }
-            return null
+    fun getTarget(
+        range : Int,
+        ignoreFriends : Boolean
+    ) : PlayerEntity? {
+
+        world.entities.forEach {
+            if (player.distanceTo(it) <= range
+                && it is PlayerEntity
+                && it != player
+                && Friends.get().isFriend(it) != ignoreFriends
+            ) return it
+        }
+        return null
+    }
+
+    fun isSurrounded(
+        entity : PlayerEntity
+    ) : Boolean {
+
+        var ind = 0
+
+        arrayOf(
+            Vec2f(0F, 1F),
+            Vec2f(0F, -1F),
+            Vec2f(1F, 0F),
+            Vec2f(-1F, 0F)
+        ).forEach {
+            if (!world.getBlockState(entity.blockPos.add(
+                    it.x.toDouble(), 0.0, it.y.toDouble()
+                )).isAir) ind++
         }
 
-        fun isSurrounded(entity : PlayerEntity) : Boolean
-        {
-            val blockPos = entity.blockPos
-            return world?.getBlockState(blockPos.add(0, 0, 1))?.isAir == false && world?.getBlockState(blockPos.add(0, 0, -1))?.isAir == false &&
-                world?.getBlockState(blockPos.add(1, 0, 0))?.isAir == false && world?.getBlockState(blockPos.add(-1, 0, 0))?.isAir  == false
-        }
+        return ind == 4
     }
 }
