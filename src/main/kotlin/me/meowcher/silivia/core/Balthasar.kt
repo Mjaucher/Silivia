@@ -18,7 +18,8 @@ class Balthasar
                 TickShift, CartBomb, FakeKick,
                 NoSwing,
                 Changer, AutoKit,
-                Prefix
+                Prefix,
+                DiscordActivity
             ).forEach {
                 Modules.get().add(it)
             }

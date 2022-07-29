@@ -33,6 +33,7 @@ dependencies {
     modImplementation("meteordevelopment:meteor-client:SNAPSHOT")
 
     implementation("com.github.therealbush:eventbus-kotlin:1.0.1")
+    implementation("com.github.Vatuu:discord-rpc:1.6.2")
 
     arrayOf("stdlib", "stdlib-jdk8", "reflect").forEach {
         implementation(kotlin(it, kotlin))
