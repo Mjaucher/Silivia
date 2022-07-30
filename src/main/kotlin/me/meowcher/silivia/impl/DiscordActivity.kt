@@ -15,26 +15,46 @@ object DiscordActivity : Module(
     "Displays your discord activity."
 ), Melchior {
 
-    private val group = settings.defaultGroup
+    private var linesGroup = settings.createGroup("Lines Settings")
+    private var iconsGroup = settings.createGroup("Icons Settings")
 
-    private val firstLine = group.add(StringSetting.Builder().name("first-line")
-        .defaultValue("https://github.com/mjaucher/Silivia")
-        .build())
-    private val secondLine = group.add(StringSetting.Builder().name("second-line")
+    private val firstLine = linesGroup.add(StringSetting.Builder().name("first-line")
         .defaultValue("Minecraft: ${minecraft.gameVersion} ${SharedConstants.getGameVersion().name}")
+        .build())
+    private val secondLine = linesGroup.add(StringSetting.Builder().name("second-line")
+        .defaultValue("Addon Version: ${Casper.Reference.modVersion}")
+        .build())
+
+    private val largeIcon = iconsGroup.add(StringSetting.Builder().name("large-icon")
+        .defaultValue(Casper.Reference.modVersion)
+        .build())
+    private val smallIcon = iconsGroup.add(StringSetting.Builder().name("small-icon")
+        .defaultValue("<3")
         .build())
 
     override fun onActivate() {
         UDiscord.run()
-        UDiscord.update("general-icon", firstLine.get(), secondLine.get())
+        update()
     }
-    override fun onDeactivate() = UDiscord.shutdown()
+    override fun onDeactivate() {
+        update()
+        UDiscord.shutdown()
+    }
 
     override fun getWidget(guiTheme: GuiTheme): WWidget {
         val updateButton = guiTheme.button("Update info!")
         updateButton.action = Runnable {
-            UDiscord.update("general-icon", firstLine.get(), secondLine.get())
+            update()
         }
         return updateButton
     }
+
+    private fun update() =
+        UDiscord.update(
+            "general-icon",
+            firstLine.get(),
+            secondLine.get(),
+            largeIcon.get(),
+            smallIcon.get()
+        )
 }

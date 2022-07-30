@@ -13,12 +13,13 @@ object UDiscord: Melchior {
             DiscordEventHandlers.Builder().setReadyEventHandler {
             }.build(), true)
 
-    fun update(image: String, firstLine: String, secondLine: String) =
+    fun update(image: String, firstLine: String, secondLine: String, largeIcon: String, smallIcon: String) =
         DiscordRPC.discordUpdatePresence(
             DiscordRichPresence
                 .Builder(secondLine)
                 .setDetails(firstLine)
-                .setBigImage(image, "Silivia!")
+                .setBigImage(image, largeIcon)
+                .setSmallImage(image, smallIcon)
                 .build())
 
     fun shutdown() =

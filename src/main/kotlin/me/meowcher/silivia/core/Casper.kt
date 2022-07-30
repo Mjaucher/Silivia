@@ -10,6 +10,7 @@ class Casper : Melchior, MeteorAddon()
     object Reference
     {
         const val modID = "Silivia"
+        const val modVersion = "v1"
 
         val category : Category = Category(modID)
 
