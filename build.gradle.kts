@@ -1,12 +1,12 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.7.0"
-    id("fabric-loom") version "0.12-SNAPSHOT"
+    kotlin("jvm") version "2.0.0"
+    id("fabric-loom") version "1.7-SNAPSHOT"
 }
 
-val minecraft = "1.19"
-val kotlin = "1.7.0"
+val minecraft = "1.21"
+val kotlin = "2.0.0"
 
 repositories {
 
@@ -29,8 +29,8 @@ dependencies {
     minecraft("com.mojang:minecraft:$minecraft")
     mappings("net.fabricmc:yarn:$minecraft+build.1:v2")
 
-    modImplementation("net.fabricmc:fabric-loader:0.14.6")
-    modImplementation("meteordevelopment:meteor-client:SNAPSHOT")
+    modImplementation("net.fabricmc:fabric-loader:0.15.11")
+    modImplementation("meteordevelopment:meteor-client:0.5.8-SNAPSHOT")
 
     implementation("com.github.therealbush:eventbus-kotlin:1.0.1")
     implementation("com.github.Vatuu:discord-rpc:1.6.2")
@@ -58,7 +58,7 @@ tasks {
     }
 
     withType(KotlinCompile::class) {
-        kotlinOptions.jvmTarget = "17"
+        kotlinOptions.jvmTarget = "21"
     }
 }
 

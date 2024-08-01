@@ -3,9 +3,9 @@
   "id": "silivia",
   "version": "v1",
   "name": "Silivia",
-  "description": "Trolling!",
+  "description": "87",
   "authors": [
-    "мяучер"
+    "RainySpring87"
   ],
   "contact": {
     "sources": "https://github.com/Jackesparragos/Silivia"
@@ -14,7 +14,7 @@
   "environment": "client",
   "entrypoints": {
     "meteor": [
-      "me.meowcher.silivia.core.Casper"
+      "rainyspring.silivia.core.Casper"
     ]
   },
   "mixins": [
@@ -24,8 +24,8 @@
     "meteor-client:color": "165,125,255"
   },
   "depends": {
-    "java": ">=17",
-    "minecraft": ">=1.19",
+    "java": ">=21",
+    "minecraft": ">=1.21",
     "meteor-client": "*"
   }
 }
