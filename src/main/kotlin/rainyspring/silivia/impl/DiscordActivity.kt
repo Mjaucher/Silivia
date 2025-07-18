@@ -7,7 +7,6 @@ import meteordevelopment.meteorclient.gui.GuiTheme
 import meteordevelopment.meteorclient.gui.widgets.WWidget
 import meteordevelopment.meteorclient.systems.modules.Module
 import meteordevelopment.meteorclient.settings.*
-import net.minecraft.SharedConstants
 
 object DiscordActivity : Module(
     Casper.Reference.category,
@@ -19,7 +18,7 @@ object DiscordActivity : Module(
     private var iconsGroup = settings.createGroup("Icons Settings")
 
     private val firstLine = linesGroup.add(StringSetting.Builder().name("first-line")
-        .defaultValue("Minecraft: ${minecraft.gameVersion} ${SharedConstants.getGameVersion().name}")
+        .defaultValue(player.name.string)
         .build())
     private val secondLine = linesGroup.add(StringSetting.Builder().name("second-line")
         .defaultValue("Addon Version: ${Casper.Reference.version}")

@@ -2,10 +2,10 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm") version "2.0.0"
-    id("fabric-loom") version "1.7-SNAPSHOT"
+    id("fabric-loom") version "1.11-SNAPSHOT"
 }
 
-val minecraft = "1.21"
+val minecraft = "1.21.8"
 val kotlin = "2.0.0"
 
 repositories {
@@ -29,8 +29,8 @@ dependencies {
     minecraft("com.mojang:minecraft:$minecraft")
     mappings("net.fabricmc:yarn:$minecraft+build.1:v2")
 
-    modImplementation("net.fabricmc:fabric-loader:0.15.11")
-    modImplementation("meteordevelopment:meteor-client:0.5.8-SNAPSHOT")
+    modImplementation("net.fabricmc:fabric-loader:0.16.14")
+    modImplementation("meteordevelopment:meteor-client:$minecraft-SNAPSHOT")
 
     implementation("com.github.therealbush:eventbus-kotlin:1.0.1")
     implementation("com.github.Vatuu:discord-rpc:1.6.2")

@@ -5,7 +5,7 @@ import net.minecraft.entity.Entity
 import net.minecraft.particle.*
 import net.minecraft.sound.*
 
-object USpawn : Melchior
+object USpawn: Melchior
 {
     private fun playSound(sound: SoundEvent) =
         player.playSound(sound, 1F, 1F)
@@ -32,6 +32,6 @@ object USpawn : Melchior
         posZ: Double
     ) = particleType.forEach {
         val type = it as ParticleEffect
-        world.addParticle(type, posX, posY, posZ, 0.0, 0.0, 0.0)
+        world.addParticleClient(type, posX, posY, posZ, 0.0, 0.0, 0.0)
     }
 }

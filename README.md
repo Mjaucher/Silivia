@@ -19,10 +19,6 @@ __Credits:__ https://en.wikipedia.org/wiki/Trollface
     
  __Auto Login__ Automatic registration and _Login_ to the server.
     
- __Cart Bomb__ Automatically puts _Mine Cart_ with TNT under enemy feet.
-
- __Changer__ _Changes_ in-game parameters (EXP Bar, Weather, Fov, FPS limit, and more)
-    
  __Fake Kick__ Automatic disconnect with _Fake_ reason
     
  __Kill Effects__ Shows _Effects_ after the enemy's death.
@@ -35,6 +31,6 @@ __Credits:__ https://en.wikipedia.org/wiki/Trollface
     
  __Prefix__ Custom Meteor Client _Prefix_ with more customizations.
     
- __Tick Shift__ Timer = 2.0 frfrfr
+ __Tick Shift__ Timer == 2.0 frfrfr
 
 </div>

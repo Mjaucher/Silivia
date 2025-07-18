@@ -9,12 +9,12 @@ object UAmbience: Melchior
     fun setTime(
         time: Long
     ) {
-        world.timeOfDay = time
+        world.levelProperties.timeOfDay = time
     }
 
     fun setTime(
         time: Int
     ) {
-        world.timeOfDay = time.toLong()
+        world.levelProperties.timeOfDay = time.toLong()
     }
 }
